@@ -480,6 +480,10 @@
             "named": true
           },
           {
+            "type": "private_property_identifier",
+            "named": true
+          },
+          {
             "type": "property_identifier",
             "named": true
           },
@@ -839,6 +843,10 @@
           },
           {
             "type": "subscript_expression",
+            "named": true
+          },
+          {
+            "type": "undefined",
             "named": true
           }
         ]
@@ -1538,6 +1546,11 @@
     }
   },
   {
+    "type": "const_modifier",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "constraint",
     "named": true,
     "fields": {},
@@ -1803,6 +1816,10 @@
           "named": true
         },
         {
+          "type": "private_property_identifier",
+          "named": true
+        },
+        {
           "type": "property_identifier",
           "named": true
         },
@@ -1831,6 +1848,10 @@
         },
         {
           "type": "number",
+          "named": true
+        },
+        {
+          "type": "private_property_identifier",
           "named": true
         },
         {
@@ -1868,6 +1889,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "const_modifier",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1971,6 +2002,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "namespace_import",
           "named": true
         }
       ]
@@ -2097,6 +2132,10 @@
           },
           {
             "type": "subscript_expression",
+            "named": true
+          },
+          {
+            "type": "undefined",
             "named": true
           }
         ]
@@ -2843,6 +2882,10 @@
           "named": true
         },
         {
+          "type": "readonly_modifier",
+          "named": true
+        },
+        {
           "type": "readonly_type",
           "named": true
         },
@@ -3455,6 +3498,10 @@
         "required": true,
         "types": [
           {
+            "type": "private_property_identifier",
+            "named": true
+          },
+          {
             "type": "property_identifier",
             "named": true
           }
@@ -3494,6 +3541,10 @@
             "named": true
           },
           {
+            "type": "private_property_identifier",
+            "named": true
+          },
+          {
             "type": "property_identifier",
             "named": true
           },
@@ -3543,11 +3594,15 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
           "type": "accessibility_modifier",
+          "named": true
+        },
+        {
+          "type": "readonly_modifier",
           "named": true
         }
       ]
@@ -3570,6 +3625,10 @@
             "named": true
           },
           {
+            "type": "private_property_identifier",
+            "named": true
+          },
+          {
             "type": "property_identifier",
             "named": true
           },
@@ -3619,11 +3678,15 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
           "type": "accessibility_modifier",
+          "named": true
+        },
+        {
+          "type": "readonly_modifier",
           "named": true
         }
       ]
@@ -4032,6 +4095,10 @@
           "named": true
         },
         {
+          "type": "readonly_modifier",
+          "named": true
+        },
+        {
           "type": "this",
           "named": true
         },
@@ -4098,6 +4165,10 @@
             "named": true
           },
           {
+            "type": "private_property_identifier",
+            "named": true
+          },
+          {
             "type": "property_identifier",
             "named": true
           },
@@ -4133,6 +4204,10 @@
           },
           {
             "type": "number",
+            "named": true
+          },
+          {
+            "type": "private_property_identifier",
             "named": true
           },
           {
@@ -4260,6 +4335,10 @@
             "named": true
           },
           {
+            "type": "private_property_identifier",
+            "named": true
+          },
+          {
             "type": "property_identifier",
             "named": true
           },
@@ -4281,11 +4360,15 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
           "type": "accessibility_modifier",
+          "named": true
+        },
+        {
+          "type": "readonly_modifier",
           "named": true
         }
       ]
@@ -4305,6 +4388,10 @@
           },
           {
             "type": "number",
+            "named": true
+          },
+          {
+            "type": "private_property_identifier",
             "named": true
           },
           {
@@ -4339,22 +4426,31 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
           "type": "accessibility_modifier",
+          "named": true
+        },
+        {
+          "type": "readonly_modifier",
           "named": true
         }
       ]
     }
   },
   {
+    "type": "readonly_modifier",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "readonly_type",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
@@ -4375,6 +4471,10 @@
         },
         {
           "type": "intersection_type",
+          "named": true
+        },
+        {
+          "type": "readonly_modifier",
           "named": true
         },
         {
@@ -4449,6 +4549,10 @@
         },
         {
           "type": "pattern",
+          "named": true
+        },
+        {
+          "type": "readonly_modifier",
           "named": true
         },
         {
@@ -4613,6 +4717,10 @@
       "types": [
         {
           "type": "escape_sequence",
+          "named": true
+        },
+        {
+          "type": "string_fragment",
           "named": true
         }
       ]
@@ -5861,6 +5969,10 @@
     "named": false
   },
   {
+    "type": "private_property_identifier",
+    "named": true
+  },
+  {
     "type": "property_identifier",
     "named": true
   },
@@ -5915,6 +6027,10 @@
   {
     "type": "string",
     "named": false
+  },
+  {
+    "type": "string_fragment",
+    "named": true
   },
   {
     "type": "super",

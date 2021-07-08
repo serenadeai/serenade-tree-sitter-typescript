@@ -74,18 +74,21 @@ module.exports = function defineGrammar(dialect) {
       [$.primary_expression, $._parameter_name, $.predefined_type],
       [$.primary_expression, $._parameter_name, $._primary_type],
       [$.primary_expression, $._parameter_name, $.array_type, $.tuple_type],
+      [$.primary_expression, $.readonly_modifier],
       [$.primary_expression, $.literal_type],
       [$.primary_expression, $._primary_type],
       [$.primary_expression, $.generic_type],
       [$.primary_expression, $.predefined_type],
       [$.primary_expression, $.pattern, $._primary_type],
       [$.primary_expression, $.pattern, $.predefined_type],
+      [$.primary_expression, $.pattern, $.readonly_modifier],
       [$._parameter_name, $.predefined_type],
       [$._parameter_name, $._primary_type],
       [$._parameter_name, $.assignment_expression],
       [$._parameter_name, $.pattern],
       [$.pattern, $._primary_type],
       [$.pattern, $.predefined_type],
+      [$.pattern, $.readonly_modifier],
 
       [$.optional_tuple_parameter, $._primary_type],
       [$.optional_tuple_parameter, $._primary_type, $.primary_expression],
@@ -121,9 +124,9 @@ module.exports = function defineGrammar(dialect) {
         optional('declare'),
         optional($.accessibility_modifier),
         choice(
-          seq(optional('static'), optional('readonly')),
-          seq(optional('abstract'), optional('readonly')),
-          seq(optional('readonly'), optional('abstract')),
+          seq(optional('static'), optional($.readonly_modifier)),
+          seq(optional('abstract'), optional($.readonly_modifier)),
+          seq(optional($.readonly_modifier), optional('abstract')),
         ),
         field('name', $._property_name),
         optional(choice('?', '!')),
@@ -278,7 +281,7 @@ module.exports = function defineGrammar(dialect) {
       method_signature: $ => seq(
         optional($.accessibility_modifier),
         optional('static'),
-        optional('readonly'),
+        optional($.readonly_modifier),
         optional('async'),
         optional(choice('get', 'set', '*')),
         field('name', $._property_name),
@@ -338,7 +341,7 @@ module.exports = function defineGrammar(dialect) {
       method_definition: $ => prec.left(seq(
         optional($.accessibility_modifier),
         optional('static'),
-        optional('readonly'),
+        optional($.readonly_modifier),
         optional('async'),
         optional(choice('get', 'set', '*')),
         field('name', $._property_name),
@@ -471,7 +474,7 @@ module.exports = function defineGrammar(dialect) {
       )),
 
       enum_declaration: $ => seq(
-        optional('const'),
+        optional($.const_modifier),
         'enum',
         field('name', $.identifier),
         field('body', $.enum_body)
@@ -509,6 +512,10 @@ module.exports = function defineGrammar(dialect) {
         'protected'
       ),
 
+      const_modifier: $ => seq('const'),
+
+      readonly_modifier: $ => seq('readonly'),
+
       required_parameter: $ => seq(
         $._parameter_name,
         optional($.type_annotation),
@@ -525,7 +532,7 @@ module.exports = function defineGrammar(dialect) {
       _parameter_name: $ => seq(
         repeat(field('decorator', $.decorator)),
         optional($.accessibility_modifier),
-        optional('readonly'),
+        optional($.readonly_modifier),
         choice($.pattern, $.this)
       ),
 
@@ -710,7 +717,7 @@ module.exports = function defineGrammar(dialect) {
       property_signature: $ => seq(
         optional($.accessibility_modifier),
         optional('static'),
-        optional('readonly'),
+        optional($.readonly_modifier),
         field('name', $._property_name),
         optional('?'),
         field('type', optional($.type_annotation))
@@ -755,7 +762,7 @@ module.exports = function defineGrammar(dialect) {
         optional(
           seq(
             field("sign", optional("-")),
-            'readonly'
+            $.readonly_modifier
           )
         ),
         '[',
@@ -782,7 +789,7 @@ module.exports = function defineGrammar(dialect) {
       tuple_type: $ => seq(
         '[', commaSep($._tuple_type_member), optional(','), ']'
       ),
-      readonly_type: $ => seq('readonly', $._type),
+      readonly_type: $ => seq($.readonly_modifier, $._type),
 
       union_type: $ => prec.left(seq(optional($._type), '|', $._type)),
       intersection_type: $ => prec.left(seq(optional($._type), '&', $._type)),
