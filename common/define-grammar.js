@@ -432,7 +432,7 @@ module.exports = function defineGrammar(dialect) {
       class_declaration: $ => prec.left('declaration', seq(
         repeat(field('decorator', $.decorator)),
         'class',
-        field('name', $._type_identifier),
+        field('class_identifier', $._type_identifier),
         field('type_parameters', optional($.type_parameters)),
         optional($.class_heritage),
         field('body', $.class_body),

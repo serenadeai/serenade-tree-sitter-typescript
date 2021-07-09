@@ -2975,7 +2975,7 @@
           },
           {
             "type": "FIELD",
-            "name": "name",
+            "name": "class_identifier",
             "content": {
               "type": "SYMBOL",
               "name": "_type_identifier"

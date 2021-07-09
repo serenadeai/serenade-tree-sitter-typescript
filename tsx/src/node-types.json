@@ -1291,22 +1291,22 @@
           }
         ]
       },
+      "class_identifier": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      },
       "decorator": {
         "multiple": true,
         "required": false,
         "types": [
           {
             "type": "decorator",
-            "named": true
-          }
-        ]
-      },
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "type_identifier",
             "named": true
           }
         ]
