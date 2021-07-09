@@ -533,11 +533,23 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
           "type": "accessibility_modifier",
+          "named": true
+        },
+        {
+          "type": "get_modifier",
+          "named": true
+        },
+        {
+          "type": "set_modifier",
+          "named": true
+        },
+        {
+          "type": "symbol_star_modifier",
           "named": true
         }
       ]
@@ -557,27 +569,7 @@
       "required": true,
       "types": [
         {
-          "type": "_primary_type",
-          "named": true
-        },
-        {
-          "type": "constructor_type",
-          "named": true
-        },
-        {
           "type": "declaration",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "infer_type",
-          "named": true
-        },
-        {
-          "type": "intersection_type",
           "named": true
         },
         {
@@ -585,15 +577,11 @@
           "named": true
         },
         {
-          "type": "readonly_type",
-          "named": true
-        },
-        {
           "type": "statement_block",
           "named": true
         },
         {
-          "type": "union_type",
+          "type": "type",
           "named": true
         }
       ]
@@ -748,31 +736,7 @@
       "required": true,
       "types": [
         {
-          "type": "_primary_type",
-          "named": true
-        },
-        {
-          "type": "constructor_type",
-          "named": true
-        },
-        {
           "type": "expression",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "infer_type",
-          "named": true
-        },
-        {
-          "type": "intersection_type",
-          "named": true
-        },
-        {
-          "type": "readonly_type",
           "named": true
         },
         {
@@ -780,7 +744,7 @@
           "named": true
         },
         {
-          "type": "union_type",
+          "type": "type",
           "named": true
         }
       ]
@@ -813,50 +777,22 @@
     "type": "assignment_expression",
     "named": true,
     "fields": {
-      "left": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "array_pattern",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "member_expression",
-            "named": true
-          },
-          {
-            "type": "non_null_expression",
-            "named": true
-          },
-          {
-            "type": "object_pattern",
-            "named": true
-          },
-          {
-            "type": "parenthesized_expression",
-            "named": true
-          },
-          {
-            "type": "subscript_expression",
-            "named": true
-          },
-          {
-            "type": "undefined",
-            "named": true
-          }
-        ]
-      },
-      "right": {
+      "assignment_value": {
         "multiple": false,
         "required": true,
         "types": [
           {
             "type": "expression",
+            "named": true
+          }
+        ]
+      },
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "assignment_variable_expression",
             "named": true
           }
         ]
@@ -888,6 +824,54 @@
         ]
       }
     }
+  },
+  {
+    "type": "assignment_variable_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "array_pattern",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "member_expression",
+          "named": true
+        },
+        {
+          "type": "non_null_expression",
+          "named": true
+        },
+        {
+          "type": "object_pattern",
+          "named": true
+        },
+        {
+          "type": "parenthesized_expression",
+          "named": true
+        },
+        {
+          "type": "subscript_expression",
+          "named": true
+        },
+        {
+          "type": "undefined",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "async_modifier",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "augmented_assignment_expression",
@@ -1287,27 +1271,7 @@
       "required": false,
       "types": [
         {
-          "type": "abstract_method_signature",
-          "named": true
-        },
-        {
-          "type": "decorator",
-          "named": true
-        },
-        {
-          "type": "index_signature",
-          "named": true
-        },
-        {
-          "type": "method_definition",
-          "named": true
-        },
-        {
-          "type": "method_signature",
-          "named": true
-        },
-        {
-          "type": "public_field_definition",
+          "type": "class_member",
           "named": true
         }
       ]
@@ -1389,6 +1353,41 @@
     }
   },
   {
+    "type": "class_member",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "abstract_method_signature",
+          "named": true
+        },
+        {
+          "type": "decorator",
+          "named": true
+        },
+        {
+          "type": "index_signature",
+          "named": true
+        },
+        {
+          "type": "method_definition",
+          "named": true
+        },
+        {
+          "type": "method_signature",
+          "named": true
+        },
+        {
+          "type": "public_field_definition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "computed_property_name",
     "named": true,
     "fields": {},
@@ -1412,31 +1411,7 @@
         "required": true,
         "types": [
           {
-            "type": "_primary_type",
-            "named": true
-          },
-          {
-            "type": "constructor_type",
-            "named": true
-          },
-          {
-            "type": "function_type",
-            "named": true
-          },
-          {
-            "type": "infer_type",
-            "named": true
-          },
-          {
-            "type": "intersection_type",
-            "named": true
-          },
-          {
-            "type": "readonly_type",
-            "named": true
-          },
-          {
-            "type": "union_type",
+            "type": "type",
             "named": true
           }
         ]
@@ -1446,31 +1421,7 @@
         "required": true,
         "types": [
           {
-            "type": "_primary_type",
-            "named": true
-          },
-          {
-            "type": "constructor_type",
-            "named": true
-          },
-          {
-            "type": "function_type",
-            "named": true
-          },
-          {
-            "type": "infer_type",
-            "named": true
-          },
-          {
-            "type": "intersection_type",
-            "named": true
-          },
-          {
-            "type": "readonly_type",
-            "named": true
-          },
-          {
-            "type": "union_type",
+            "type": "type",
             "named": true
           }
         ]
@@ -1480,31 +1431,7 @@
         "required": true,
         "types": [
           {
-            "type": "_primary_type",
-            "named": true
-          },
-          {
-            "type": "constructor_type",
-            "named": true
-          },
-          {
-            "type": "function_type",
-            "named": true
-          },
-          {
-            "type": "infer_type",
-            "named": true
-          },
-          {
-            "type": "intersection_type",
-            "named": true
-          },
-          {
-            "type": "readonly_type",
-            "named": true
-          },
-          {
-            "type": "union_type",
+            "type": "type",
             "named": true
           }
         ]
@@ -1514,31 +1441,7 @@
         "required": true,
         "types": [
           {
-            "type": "_primary_type",
-            "named": true
-          },
-          {
-            "type": "constructor_type",
-            "named": true
-          },
-          {
-            "type": "function_type",
-            "named": true
-          },
-          {
-            "type": "infer_type",
-            "named": true
-          },
-          {
-            "type": "intersection_type",
-            "named": true
-          },
-          {
-            "type": "readonly_type",
-            "named": true
-          },
-          {
-            "type": "union_type",
+            "type": "type",
             "named": true
           }
         ]
@@ -1559,31 +1462,7 @@
       "required": true,
       "types": [
         {
-          "type": "_primary_type",
-          "named": true
-        },
-        {
-          "type": "constructor_type",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "infer_type",
-          "named": true
-        },
-        {
-          "type": "intersection_type",
-          "named": true
-        },
-        {
-          "type": "readonly_type",
-          "named": true
-        },
-        {
-          "type": "union_type",
+          "type": "type",
           "named": true
         }
       ]
@@ -1621,39 +1500,15 @@
       "required": true,
       "types": [
         {
-          "type": "_primary_type",
-          "named": true
-        },
-        {
-          "type": "constructor_type",
-          "named": true
-        },
-        {
           "type": "formal_parameters",
           "named": true
         },
         {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "infer_type",
-          "named": true
-        },
-        {
-          "type": "intersection_type",
-          "named": true
-        },
-        {
-          "type": "readonly_type",
+          "type": "type",
           "named": true
         },
         {
           "type": "type_parameters",
-          "named": true
-        },
-        {
-          "type": "union_type",
           "named": true
         }
       ]
@@ -1712,31 +1567,7 @@
       "required": true,
       "types": [
         {
-          "type": "_primary_type",
-          "named": true
-        },
-        {
-          "type": "constructor_type",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "infer_type",
-          "named": true
-        },
-        {
-          "type": "intersection_type",
-          "named": true
-        },
-        {
-          "type": "readonly_type",
-          "named": true
-        },
-        {
-          "type": "union_type",
+          "type": "type",
           "named": true
         }
       ]
@@ -1792,7 +1623,7 @@
     "type": "enum_assignment",
     "named": true,
     "fields": {
-      "value": {
+      "assignment_value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -2421,6 +2252,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "async_modifier",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2432,31 +2273,11 @@
       "required": true,
       "types": [
         {
-          "type": "_primary_type",
-          "named": true
-        },
-        {
-          "type": "constructor_type",
-          "named": true
-        },
-        {
           "type": "formal_parameters",
           "named": true
         },
         {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "infer_type",
-          "named": true
-        },
-        {
-          "type": "intersection_type",
-          "named": true
-        },
-        {
-          "type": "readonly_type",
+          "type": "type",
           "named": true
         },
         {
@@ -2465,10 +2286,6 @@
         },
         {
           "type": "type_predicate",
-          "named": true
-        },
-        {
-          "type": "union_type",
           "named": true
         }
       ]
@@ -2626,6 +2443,11 @@
     }
   },
   {
+    "type": "get_modifier",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "if_statement",
     "named": true,
     "fields": {
@@ -2670,31 +2492,7 @@
       "required": true,
       "types": [
         {
-          "type": "_primary_type",
-          "named": true
-        },
-        {
-          "type": "constructor_type",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "infer_type",
-          "named": true
-        },
-        {
-          "type": "intersection_type",
-          "named": true
-        },
-        {
-          "type": "readonly_type",
-          "named": true
-        },
-        {
-          "type": "union_type",
+          "type": "type",
           "named": true
         }
       ]
@@ -2846,27 +2644,7 @@
       "required": true,
       "types": [
         {
-          "type": "_primary_type",
-          "named": true
-        },
-        {
-          "type": "constructor_type",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
           "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "infer_type",
-          "named": true
-        },
-        {
-          "type": "intersection_type",
           "named": true
         },
         {
@@ -2886,15 +2664,11 @@
           "named": true
         },
         {
-          "type": "readonly_type",
+          "type": "type",
           "named": true
         },
         {
           "type": "type_annotation",
-          "named": true
-        },
-        {
-          "type": "union_type",
           "named": true
         }
       ]
@@ -3019,31 +2793,7 @@
       "required": true,
       "types": [
         {
-          "type": "_primary_type",
-          "named": true
-        },
-        {
-          "type": "constructor_type",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "infer_type",
-          "named": true
-        },
-        {
-          "type": "intersection_type",
-          "named": true
-        },
-        {
-          "type": "readonly_type",
-          "named": true
-        },
-        {
-          "type": "union_type",
+          "type": "type",
           "named": true
         }
       ]
@@ -3414,27 +3164,7 @@
           "named": true
         },
         {
-          "type": "constructor_type",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "infer_type",
-          "named": true
-        },
-        {
-          "type": "intersection_type",
-          "named": true
-        },
-        {
-          "type": "readonly_type",
-          "named": true
-        },
-        {
-          "type": "union_type",
+          "type": "type",
           "named": true
         }
       ]
@@ -3449,31 +3179,11 @@
       "required": true,
       "types": [
         {
-          "type": "_primary_type",
+          "type": "type",
           "named": true
         },
         {
-          "type": "constructor_type",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "infer_type",
-          "named": true
-        },
-        {
-          "type": "intersection_type",
-          "named": true
-        },
-        {
-          "type": "readonly_type",
-          "named": true
-        },
-        {
-          "type": "union_type",
+          "type": "type_identifier",
           "named": true
         }
       ]
@@ -3602,7 +3312,27 @@
           "named": true
         },
         {
+          "type": "async_modifier",
+          "named": true
+        },
+        {
+          "type": "get_modifier",
+          "named": true
+        },
+        {
           "type": "readonly_modifier",
+          "named": true
+        },
+        {
+          "type": "set_modifier",
+          "named": true
+        },
+        {
+          "type": "static_modifier",
+          "named": true
+        },
+        {
+          "type": "symbol_star_modifier",
           "named": true
         }
       ]
@@ -3686,7 +3416,27 @@
           "named": true
         },
         {
+          "type": "async_modifier",
+          "named": true
+        },
+        {
+          "type": "get_modifier",
+          "named": true
+        },
+        {
           "type": "readonly_modifier",
+          "named": true
+        },
+        {
+          "type": "set_modifier",
+          "named": true
+        },
+        {
+          "type": "static_modifier",
+          "named": true
+        },
+        {
+          "type": "symbol_star_modifier",
           "named": true
         }
       ]
@@ -3988,31 +3738,7 @@
       "required": true,
       "types": [
         {
-          "type": "_primary_type",
-          "named": true
-        },
-        {
-          "type": "constructor_type",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "infer_type",
-          "named": true
-        },
-        {
-          "type": "intersection_type",
-          "named": true
-        },
-        {
-          "type": "readonly_type",
-          "named": true
-        },
-        {
-          "type": "union_type",
+          "type": "type",
           "named": true
         }
       ]
@@ -4027,31 +3753,7 @@
       "required": true,
       "types": [
         {
-          "type": "_primary_type",
-          "named": true
-        },
-        {
-          "type": "constructor_type",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "infer_type",
-          "named": true
-        },
-        {
-          "type": "intersection_type",
-          "named": true
-        },
-        {
-          "type": "readonly_type",
-          "named": true
-        },
-        {
-          "type": "union_type",
+          "type": "type",
           "named": true
         }
       ]
@@ -4061,22 +3763,22 @@
     "type": "optional_parameter",
     "named": true,
     "fields": {
+      "assignment_value": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      },
       "decorator": {
         "multiple": true,
         "required": false,
         "types": [
           {
             "type": "decorator",
-            "named": true
-          }
-        ]
-      },
-      "value": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "expression",
             "named": true
           }
         ]
@@ -4118,31 +3820,7 @@
       "required": true,
       "types": [
         {
-          "type": "_primary_type",
-          "named": true
-        },
-        {
-          "type": "constructor_type",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "infer_type",
-          "named": true
-        },
-        {
-          "type": "intersection_type",
-          "named": true
-        },
-        {
-          "type": "readonly_type",
-          "named": true
-        },
-        {
-          "type": "union_type",
+          "type": "type",
           "named": true
         }
       ]
@@ -4152,7 +3830,7 @@
     "type": "pair",
     "named": true,
     "fields": {
-      "key": {
+      "pair_key": {
         "multiple": false,
         "required": true,
         "types": [
@@ -4178,7 +3856,7 @@
           }
         ]
       },
-      "value": {
+      "pair_value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -4264,31 +3942,7 @@
       "required": true,
       "types": [
         {
-          "type": "_primary_type",
-          "named": true
-        },
-        {
-          "type": "constructor_type",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "infer_type",
-          "named": true
-        },
-        {
-          "type": "intersection_type",
-          "named": true
-        },
-        {
-          "type": "readonly_type",
-          "named": true
-        },
-        {
-          "type": "union_type",
+          "type": "type",
           "named": true
         }
       ]
@@ -4370,6 +4024,10 @@
         {
           "type": "readonly_modifier",
           "named": true
+        },
+        {
+          "type": "static_modifier",
+          "named": true
         }
       ]
     }
@@ -4378,6 +4036,16 @@
     "type": "public_field_definition",
     "named": true,
     "fields": {
+      "assignment_value": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      },
       "name": {
         "multiple": false,
         "required": true,
@@ -4413,16 +4081,6 @@
             "named": true
           }
         ]
-      },
-      "value": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "expression",
-            "named": true
-          }
-        ]
       }
     },
     "children": {
@@ -4435,6 +4093,10 @@
         },
         {
           "type": "readonly_modifier",
+          "named": true
+        },
+        {
+          "type": "static_modifier",
           "named": true
         }
       ]
@@ -4454,35 +4116,11 @@
       "required": true,
       "types": [
         {
-          "type": "_primary_type",
-          "named": true
-        },
-        {
-          "type": "constructor_type",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "infer_type",
-          "named": true
-        },
-        {
-          "type": "intersection_type",
-          "named": true
-        },
-        {
           "type": "readonly_modifier",
           "named": true
         },
         {
-          "type": "readonly_type",
-          "named": true
-        },
-        {
-          "type": "union_type",
+          "type": "type",
           "named": true
         }
       ]
@@ -4518,22 +4156,22 @@
     "type": "required_parameter",
     "named": true,
     "fields": {
+      "assignment_value": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      },
       "decorator": {
         "multiple": true,
         "required": false,
         "types": [
           {
             "type": "decorator",
-            "named": true
-          }
-        ]
-      },
-      "value": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "expression",
             "named": true
           }
         ]
@@ -4598,31 +4236,7 @@
       "required": true,
       "types": [
         {
-          "type": "_primary_type",
-          "named": true
-        },
-        {
-          "type": "constructor_type",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "infer_type",
-          "named": true
-        },
-        {
-          "type": "intersection_type",
-          "named": true
-        },
-        {
-          "type": "readonly_type",
-          "named": true
-        },
-        {
-          "type": "union_type",
+          "type": "type",
           "named": true
         }
       ]
@@ -4678,6 +4292,11 @@
     }
   },
   {
+    "type": "set_modifier",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "spread_element",
     "named": true,
     "fields": {},
@@ -4706,6 +4325,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "static_modifier",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "string",
@@ -4847,6 +4471,11 @@
     }
   },
   {
+    "type": "symbol_star_modifier",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "template_string",
     "named": true,
     "fields": {},
@@ -4984,35 +4613,11 @@
       "required": false,
       "types": [
         {
-          "type": "_primary_type",
-          "named": true
-        },
-        {
-          "type": "constructor_type",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "infer_type",
-          "named": true
-        },
-        {
-          "type": "intersection_type",
-          "named": true
-        },
-        {
           "type": "optional_parameter",
           "named": true
         },
         {
           "type": "optional_type",
-          "named": true
-        },
-        {
-          "type": "readonly_type",
           "named": true
         },
         {
@@ -5024,74 +4629,14 @@
           "named": true
         },
         {
-          "type": "union_type",
+          "type": "type",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "type_alias_declaration",
-    "named": true,
-    "fields": {
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "type_identifier",
-            "named": true
-          }
-        ]
-      },
-      "type_parameters": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "type_parameters",
-            "named": true
-          }
-        ]
-      },
-      "value": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "_primary_type",
-            "named": true
-          },
-          {
-            "type": "constructor_type",
-            "named": true
-          },
-          {
-            "type": "function_type",
-            "named": true
-          },
-          {
-            "type": "infer_type",
-            "named": true
-          },
-          {
-            "type": "intersection_type",
-            "named": true
-          },
-          {
-            "type": "readonly_type",
-            "named": true
-          },
-          {
-            "type": "union_type",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "type_annotation",
+    "type": "type",
     "named": true,
     "fields": {},
     "children": {
@@ -5130,6 +4675,57 @@
     }
   },
   {
+    "type": "type_alias_declaration",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      },
+      "type_parameters": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "type_parameters",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "type_annotation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "type_arguments",
     "named": true,
     "fields": {},
@@ -5138,31 +4734,7 @@
       "required": true,
       "types": [
         {
-          "type": "_primary_type",
-          "named": true
-        },
-        {
-          "type": "constructor_type",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "infer_type",
-          "named": true
-        },
-        {
-          "type": "intersection_type",
-          "named": true
-        },
-        {
-          "type": "readonly_type",
-          "named": true
-        },
-        {
-          "type": "union_type",
+          "type": "type",
           "named": true
         }
       ]
@@ -5215,35 +4787,15 @@
       "required": true,
       "types": [
         {
-          "type": "_primary_type",
-          "named": true
-        },
-        {
-          "type": "constructor_type",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
           "type": "identifier",
           "named": true
         },
         {
-          "type": "infer_type",
+          "type": "this",
           "named": true
         },
         {
-          "type": "intersection_type",
-          "named": true
-        },
-        {
-          "type": "readonly_type",
-          "named": true
-        },
-        {
-          "type": "union_type",
+          "type": "type",
           "named": true
         }
       ]
@@ -5346,31 +4898,7 @@
       "required": true,
       "types": [
         {
-          "type": "_primary_type",
-          "named": true
-        },
-        {
-          "type": "constructor_type",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "infer_type",
-          "named": true
-        },
-        {
-          "type": "intersection_type",
-          "named": true
-        },
-        {
-          "type": "readonly_type",
-          "named": true
-        },
-        {
-          "type": "union_type",
+          "type": "type",
           "named": true
         }
       ]
@@ -5425,6 +4953,16 @@
     "type": "variable_declarator",
     "named": true,
     "fields": {
+      "assignment_value": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      },
       "name": {
         "multiple": false,
         "required": true,
@@ -5449,16 +4987,6 @@
         "types": [
           {
             "type": "type_annotation",
-            "named": true
-          }
-        ]
-      },
-      "value": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "expression",
             "named": true
           }
         ]
