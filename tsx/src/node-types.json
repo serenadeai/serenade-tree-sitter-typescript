@@ -1175,10 +1175,26 @@
             "named": true
           }
         ]
-      },
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "catch_formal_parameter",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "catch_formal_parameter",
+    "named": true,
+    "fields": {
       "parameter": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "array_pattern",
@@ -1271,7 +1287,27 @@
       "required": false,
       "types": [
         {
-          "type": "class_member",
+          "type": "abstract_method_signature",
+          "named": true
+        },
+        {
+          "type": "decorator",
+          "named": true
+        },
+        {
+          "type": "index_signature",
+          "named": true
+        },
+        {
+          "type": "method_definition",
+          "named": true
+        },
+        {
+          "type": "method_signature",
+          "named": true
+        },
+        {
+          "type": "public_field_definition",
           "named": true
         }
       ]
@@ -1347,41 +1383,6 @@
         },
         {
           "type": "implements_clause",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "class_member",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "abstract_method_signature",
-          "named": true
-        },
-        {
-          "type": "decorator",
-          "named": true
-        },
-        {
-          "type": "index_signature",
-          "named": true
-        },
-        {
-          "type": "method_definition",
-          "named": true
-        },
-        {
-          "type": "method_signature",
-          "named": true
-        },
-        {
-          "type": "public_field_definition",
           "named": true
         }
       ]
@@ -1534,6 +1535,21 @@
     "type": "debugger_statement",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "declaration_assignments",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "variable_declarator",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "decorator",
@@ -2198,6 +2214,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "async_modifier",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2718,7 +2744,7 @@
           }
         ]
       },
-      "name": {
+      "interface_identifier": {
         "multiple": false,
         "required": true,
         "types": [
@@ -2876,6 +2902,32 @@
           }
         ]
       },
+      "jsx_html_content": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "jsx_element",
+            "named": true
+          },
+          {
+            "type": "jsx_expression",
+            "named": true
+          },
+          {
+            "type": "jsx_fragment",
+            "named": true
+          },
+          {
+            "type": "jsx_self_closing_element",
+            "named": true
+          },
+          {
+            "type": "jsx_text",
+            "named": true
+          }
+        ]
+      },
       "open_tag": {
         "multiple": false,
         "required": true,
@@ -2886,55 +2938,30 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "jsx_element",
-          "named": true
-        },
-        {
-          "type": "jsx_expression",
-          "named": true
-        },
-        {
-          "type": "jsx_fragment",
-          "named": true
-        },
-        {
-          "type": "jsx_self_closing_element",
-          "named": true
-        },
-        {
-          "type": "jsx_text",
-          "named": true
-        }
-      ]
     }
   },
   {
     "type": "jsx_expression",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "expression",
-          "named": true
-        },
-        {
-          "type": "sequence_expression",
-          "named": true
-        },
-        {
-          "type": "spread_element",
-          "named": true
-        }
-      ]
+    "fields": {
+      "jsx_expression_body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          },
+          {
+            "type": "sequence_expression",
+            "named": true
+          },
+          {
+            "type": "spread_element",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -3110,11 +3137,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "variable_declarator",
+          "type": "declaration_assignments",
           "named": true
         }
       ]
@@ -3609,28 +3636,33 @@
   {
     "type": "object",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "method_definition",
-          "named": true
-        },
-        {
-          "type": "pair",
-          "named": true
-        },
-        {
-          "type": "shorthand_property_identifier",
-          "named": true
-        },
-        {
-          "type": "spread_element",
-          "named": true
-        }
-      ]
+    "fields": {
+      "key_value_list": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": ",",
+            "named": false
+          },
+          {
+            "type": "method_definition",
+            "named": true
+          },
+          {
+            "type": "pair",
+            "named": true
+          },
+          {
+            "type": "shorthand_property_identifier",
+            "named": true
+          },
+          {
+            "type": "spread_element",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -4939,11 +4971,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "variable_declarator",
+          "type": "declaration_assignments",
           "named": true
         }
       ]
@@ -5482,11 +5514,11 @@
   },
   {
     "type": "number",
-    "named": true
+    "named": false
   },
   {
     "type": "number",
-    "named": false
+    "named": true
   },
   {
     "type": "of",

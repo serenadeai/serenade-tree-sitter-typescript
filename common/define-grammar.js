@@ -113,7 +113,9 @@ module.exports = function defineGrammar(dialect) {
       [$.array_pattern, $.tuple_type],
       
       [$.function, $.function_declaration, $.generator_function, $.generator_function_declaration, $.async_modifier],
+      [$.function, $.generator_function, $.generator_function_declaration, $.async_modifier],
       [$.function_declaration, $.generator_function_declaration, $.async_modifier],
+      [$.generator_function_declaration, $.async_modifier],
       [$.arrow_function, $.async_modifier],
       [$.export_statement, $.assignment_variable_expression],
       [$.export_statement, $.object_assignment_pattern, $.assignment_variable_expression],
@@ -147,21 +149,24 @@ module.exports = function defineGrammar(dialect) {
         optional(';')),
       ),
 
+      catch_formal_parameter: $ => seq(
+        field('parameter',
+          choice($.identifier, $._destructuring_pattern)
+        ),
+        optional(
+          // only types that resolve to 'any' or 'unknown' are supported
+          // by the language but it's simpler to accept any type here.
+          field('type', $.type_annotation),
+        )
+      ),
+
       // override original catch_clause, add optional type annotation
       catch_clause: $ => seq(
         'catch',
         optional(
           seq(
             '(',
-            field(
-              'parameter',
-              choice($.identifier, $._destructuring_pattern)
-            ),
-            optional(
-              // only types that resolve to 'any' or 'unknown' are supported
-              // by the language but it's simpler to accept any type here.
-              field('type', $.type_annotation),
-            ),
+            $.catch_formal_parameter,
             ')'
           )
         ),
@@ -219,6 +224,16 @@ module.exports = function defineGrammar(dialect) {
 
         return choice(...choices);
       },
+
+      // We override this since the modifiers are defined here. 
+      function_declaration: $ => prec.right('declaration', seq(
+        optional($.async_modifier),
+        'function',
+        field('name', $.identifier),
+        $._call_signature,
+        field('body', $.statement_block),
+        optional($._automatic_semicolon)
+      )),
 
       _jsx_start_opening_element: $ => seq(
         '<',
@@ -333,23 +348,21 @@ module.exports = function defineGrammar(dialect) {
         choice($._semicolon, $._function_signature_automatic_semicolon),
       ),
 
-      class_member: $ => choice(
-        $.decorator,
-        seq($.method_definition, optional($._semicolon)),
-        seq(
-          choice(
-            $.abstract_method_signature,
-            $.index_signature,
-            $.method_signature,
-            $.public_field_definition
-          ),
-          choice($._semicolon, ',')
-        )
-      ), 
-
       class_body: $ => seq(
         '{',
-        repeat($.class_member),
+        repeat(choice(
+          $.decorator,
+          seq($.method_definition, optional($._semicolon)),
+          seq(
+            choice(
+              $.abstract_method_signature,
+              $.index_signature,
+              $.method_signature,
+              $.public_field_definition
+            ),
+            choice($._semicolon, ',')
+          )
+        )),
         '}'
       ),
 
@@ -470,7 +483,7 @@ module.exports = function defineGrammar(dialect) {
 
       interface_declaration: $ => seq(
         'interface',
-        field('name', $._type_identifier),
+        field('interface_identifier', $._type_identifier),
         field('type_parameters', optional($.type_parameters)),
         optional($.extends_clause),
         field('body', $.object_type)
@@ -733,13 +746,14 @@ module.exports = function defineGrammar(dialect) {
 
       call_signature: $ => $._call_signature,
 
-      property_signature: $ => seq(
+      property_signature: $ => prec.right(10, seq(
         optional($.accessibility_modifier),
         optional($.static_modifier),
         optional($.readonly_modifier),
         field('name', $._property_name),
         optional('?'),
-        field('type', optional($.type_annotation))
+        field('type', optional($.type_annotation), 
+        optional(';')))
       ),
 
       _call_signature: $ => seq(
