@@ -87,6 +87,10 @@ module.exports = function defineGrammar(dialect) {
       [$.pattern, $._primary_type],
       [$.pattern, $.predefined_type],
 
+      [$.export_statement, $.assignment_variable_expression],
+      [$.export_statement, $.object_assignment_pattern, $.assignment_variable_expression],
+      [$.primary_expression, $.assignment_variable_expression],
+
       [$.optional_tuple_parameter, $._primary_type],
       [$.optional_tuple_parameter, $._primary_type, $.primary_expression],
       [$.rest_pattern, $._primary_type, $.primary_expression],
@@ -128,7 +132,7 @@ module.exports = function defineGrammar(dialect) {
         field('name', $._property_name),
         optional(choice('?', '!')),
         field('type', optional($.type_annotation)),
-        optional($._initializer)
+        optional($.initializer)
       ),
 
       // override original catch_clause, add optional type annotation
@@ -262,14 +266,16 @@ module.exports = function defineGrammar(dialect) {
         $.expression, '!'
       )),
 
+      assignment_variable_declarator: $ => choice($.identifier, $._destructuring_pattern), 
+
       variable_declarator: $ => choice(
         seq(
-          field('name', choice($.identifier, $._destructuring_pattern)),
-          field('type', optional($.type_annotation)),
-          optional($._initializer)
+          field('variable_name', $.assignment_variable_declarator),
+          optional_with_placeholder('optional_type_annotation', optional($.type_annotation)),
+          optional($.initializer)
         ),
         prec('declaration', seq(
-          field('name', $.identifier),
+          field('variable_name', $.identifier),
           '!',
           field('type', $.type_annotation)
         ))
@@ -491,7 +497,7 @@ module.exports = function defineGrammar(dialect) {
 
       enum_assignment: $ => seq(
         $._property_name,
-        $._initializer
+        $.initializer
       ),
 
       type_alias_declaration: $ => seq(
@@ -512,14 +518,14 @@ module.exports = function defineGrammar(dialect) {
       required_parameter: $ => seq(
         $._parameter_name,
         optional($.type_annotation),
-        optional($._initializer)
+        optional($.initializer)
       ),
 
       optional_parameter: $ => seq(
         $._parameter_name,
         '?',
         optional($.type_annotation),
-        optional($._initializer)
+        optional($.initializer)
       ),
 
       _parameter_name: $ => seq(
@@ -831,4 +837,8 @@ function sepBy (sep, rule) {
 
 function sepBy1 (sep, rule) {
   return seq(rule, repeat(seq(sep, rule)));
+}
+
+function optional_with_placeholder(field_name, rule) {
+  return choice(field(field_name, rule), field(field_name, blank()));
 }
