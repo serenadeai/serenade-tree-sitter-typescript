@@ -301,8 +301,8 @@ module.exports = function defineGrammar(dialect) {
       variable_declarator: $ => choice(
         seq(
           field('declarator_name', $.assignment_variable_declarator,
-          optional_with_placeholder('optional_type_field', $.type_annotation),
-          // optional($.type_annotation),
+          // optional_with_placeholder('optional_type_field', $.type_annotation),
+          field('type', optional($.type_annotation)),
           optional($.initializer)
         )),
         prec('declaration', seq(
@@ -732,7 +732,7 @@ module.exports = function defineGrammar(dialect) {
 
       object_type: $ => seq(
         field('starting_brace', choice('{', '{|')),
-        optional_with_placeholder('interface_body_test', seq(
+        optional(seq(
           optional(choice(',', ';')),
           sepBy1(
             choice(',', $._semicolon),
