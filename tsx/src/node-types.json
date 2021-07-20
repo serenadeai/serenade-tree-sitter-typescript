@@ -826,6 +826,29 @@
     }
   },
   {
+    "type": "assignment_variable_declarator",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "array_pattern",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "object_pattern",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "assignment_variable_expression",
     "named": true,
     "fields": {},
@@ -1638,24 +1661,17 @@
   {
     "type": "enum_assignment",
     "named": true,
-    "fields": {
-      "assignment_value": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "expression",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "computed_property_name",
+          "named": true
+        },
+        {
+          "type": "initializer",
           "named": true
         },
         {
@@ -2731,6 +2747,22 @@
     }
   },
   {
+    "type": "initializer",
+    "named": true,
+    "fields": {
+      "assignment_value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "interface_declaration",
     "named": true,
     "fields": {
@@ -3030,7 +3062,21 @@
       },
       "name": {
         "multiple": false,
-        "required": true,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "nested_identifier",
+            "named": true
+          }
+        ]
+      },
+      "name_single": {
+        "multiple": false,
+        "required": false,
         "types": [
           {
             "type": "identifier",
@@ -3038,10 +3084,6 @@
           },
           {
             "type": "jsx_namespace_name",
-            "named": true
-          },
-          {
-            "type": "nested_identifier",
             "named": true
           }
         ]
@@ -3078,7 +3120,21 @@
       },
       "name": {
         "multiple": false,
-        "required": true,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "nested_identifier",
+            "named": true
+          }
+        ]
+      },
+      "name_single": {
+        "multiple": false,
+        "required": false,
         "types": [
           {
             "type": "identifier",
@@ -3086,10 +3142,6 @@
           },
           {
             "type": "jsx_namespace_name",
-            "named": true
-          },
-          {
-            "type": "nested_identifier",
             "named": true
           }
         ]
@@ -3636,33 +3688,28 @@
   {
     "type": "object",
     "named": true,
-    "fields": {
-      "key_value_list": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": ",",
-            "named": false
-          },
-          {
-            "type": "method_definition",
-            "named": true
-          },
-          {
-            "type": "pair",
-            "named": true
-          },
-          {
-            "type": "shorthand_property_identifier",
-            "named": true
-          },
-          {
-            "type": "spread_element",
-            "named": true
-          }
-        ]
-      }
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "method_definition",
+          "named": true
+        },
+        {
+          "type": "pair",
+          "named": true
+        },
+        {
+          "type": "shorthand_property_identifier",
+          "named": true
+        },
+        {
+          "type": "spread_element",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3729,36 +3776,73 @@
   {
     "type": "object_type",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "call_signature",
-          "named": true
-        },
-        {
-          "type": "construct_signature",
-          "named": true
-        },
-        {
-          "type": "export_statement",
-          "named": true
-        },
-        {
-          "type": "index_signature",
-          "named": true
-        },
-        {
-          "type": "method_signature",
-          "named": true
-        },
-        {
-          "type": "property_signature",
-          "named": true
-        }
-      ]
+    "fields": {
+      "end_brace": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "|}",
+            "named": false
+          },
+          {
+            "type": "}",
+            "named": false
+          }
+        ]
+      },
+      "interface_body_test": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": ",",
+            "named": false
+          },
+          {
+            "type": ";",
+            "named": false
+          },
+          {
+            "type": "call_signature",
+            "named": true
+          },
+          {
+            "type": "construct_signature",
+            "named": true
+          },
+          {
+            "type": "export_statement",
+            "named": true
+          },
+          {
+            "type": "index_signature",
+            "named": true
+          },
+          {
+            "type": "method_signature",
+            "named": true
+          },
+          {
+            "type": "property_signature",
+            "named": true
+          }
+        ]
+      },
+      "starting_brace": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "{",
+            "named": false
+          },
+          {
+            "type": "{|",
+            "named": false
+          }
+        ]
+      }
     }
   },
   {
@@ -3795,16 +3879,6 @@
     "type": "optional_parameter",
     "named": true,
     "fields": {
-      "assignment_value": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "expression",
-            "named": true
-          }
-        ]
-      },
       "decorator": {
         "multiple": true,
         "required": false,
@@ -3822,6 +3896,10 @@
       "types": [
         {
           "type": "accessibility_modifier",
+          "named": true
+        },
+        {
+          "type": "initializer",
           "named": true
         },
         {
@@ -4068,16 +4146,6 @@
     "type": "public_field_definition",
     "named": true,
     "fields": {
-      "assignment_value": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "expression",
-            "named": true
-          }
-        ]
-      },
       "name": {
         "multiple": false,
         "required": true,
@@ -4121,6 +4189,10 @@
       "types": [
         {
           "type": "accessibility_modifier",
+          "named": true
+        },
+        {
+          "type": "initializer",
           "named": true
         },
         {
@@ -4188,16 +4260,6 @@
     "type": "required_parameter",
     "named": true,
     "fields": {
-      "assignment_value": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "expression",
-            "named": true
-          }
-        ]
-      },
       "decorator": {
         "multiple": true,
         "required": false,
@@ -4215,6 +4277,10 @@
       "types": [
         {
           "type": "accessibility_modifier",
+          "named": true
+        },
+        {
+          "type": "initializer",
           "named": true
         },
         {
@@ -4985,30 +5051,22 @@
     "type": "variable_declarator",
     "named": true,
     "fields": {
-      "assignment_value": {
+      "declarator_name": {
         "multiple": false,
         "required": false,
         "types": [
           {
-            "type": "expression",
+            "type": "assignment_variable_declarator",
             "named": true
           }
         ]
       },
       "name": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
-            "type": "array_pattern",
-            "named": true
-          },
-          {
             "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "object_pattern",
             "named": true
           }
         ]
@@ -5514,11 +5572,11 @@
   },
   {
     "type": "number",
-    "named": false
+    "named": true
   },
   {
     "type": "number",
-    "named": true
+    "named": false
   },
   {
     "type": "of",
