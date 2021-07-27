@@ -11,3 +11,6 @@ examples/desktop
 examples/redux
 examples/vscode
 log.html
+tsx/binding.gyp
+tsx/Cargo.toml
+tsx/bindings/*
