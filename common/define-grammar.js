@@ -22,7 +22,7 @@ module.exports = function defineGrammar(dialect) {
         'unary',
         'binary_as',
         $.await_expression,
-        $.arrow_function,
+        $.lambda,
       ],
       [
         $.intersection_type,
@@ -87,6 +87,20 @@ module.exports = function defineGrammar(dialect) {
       [$.primary_expression, $.pattern, $.predefined_type],
       [$.primary_expression, $.pattern, $.readonly_modifier],
       [$.primary_expression, $.pattern, $.async_modifier],
+      [$.primary_expression, $.labeled_statement, $._property_name],
+      [$.primary_expression, $.labeled_statement, $._primary_type],
+      [$.primary_expression, $.labeled_statement, $.predefined_type],
+      [$._property_name, $.static_modifier],
+      [$._property_name, $.async_modifier],
+      [$._property_name, $.accessibility_modifier],
+      [$._property_name, $.readonly_modifier],
+      [$._property_name, $.module_declaration],
+      [$._property_name, $.get_modifier],
+      [$._property_name, $.set_modifier],
+      [$._property_name, $.type_alias_declaration],
+      [$._property_name, $.internal_module],
+      [$._property_name, $.type_parameter],
+
       [$.parameter_name, $.predefined_type],
       [$.parameter_name, $._primary_type],
       [$.parameter_name, $.assignment_expression],
@@ -107,23 +121,50 @@ module.exports = function defineGrammar(dialect) {
       [$.object_pattern, $.object_type],
       [$.object_pattern, $.object_type],
       [$.object_pattern, $._property_name],
+      [$.object, $.object_type, $.statement_block],
+      [$.object_type, $.empty_statement],
+      [$.object_type, $.statement_block],
 
-      [$.array, $.tuple_type],
-      [$.array, $.array_pattern, $.tuple_type],
+      [$.list, $.tuple_type],
+      [$.list, $.array_pattern, $.tuple_type],
       [$.array_pattern, $.tuple_type],
       
       [$.function, $.function_declaration, $.generator_function, $.generator_function_declaration, $.async_modifier],
+      [$.function, $.function_declaration, $.function_signature, $.type_parameter],
       [$.function, $.generator_function, $.generator_function_declaration, $.async_modifier],
+      [$.generator_function, $.type_parameter],
+      [$.generator_function, $.generator_function_declaration, $.type_parameter],
       [$.function_declaration, $.generator_function_declaration, $.async_modifier],
+      [$.function, $.type_parameter],
       [$.generator_function_declaration, $.async_modifier],
-      [$.arrow_function, $.async_modifier],
+      [$.lambda, $.async_modifier],
+      [$.lambda, $.async_modifier, $._property_name],
       [$.export_statement, $.assignment_variable_expression],
       [$.export_statement, $.object_assignment_pattern, $.assignment_variable_expression],
       [$.primary_expression, $.assignment_variable_expression],
+      [$.primary_expression, $.assignment_variable_expression, $.type_parameter],
+      [$.primary_expression, $.type_parameter],
+      [$.primary_expression, $.type_parameter, $.labeled_statement],
+      [$.primary_expression, $.type_parameter, $._property_name],
+      [$.primary_expression, $.type_parameter, $._property_name, $.labeled_statement],
+      [$.assignment_variable_expression, $.predefined_type],
+      [$.assignment_variable_expression, $.type_parameter],
+      [$.assignment_variable_expression, $.type_parameter, $.rest_pattern],
+      [$.assignment_variable_expression, $.type_parameter, $._primary_type],
+      [$.type_parameter, $.rest_pattern],
+      [$.assignment_variable_expression, $.type_parameter, $.pattern],
+      [$.primary_expression, $.assignment_variable_expression, $.pattern],
+      [$.primary_expression, $.type_parameter, $.pattern],
+      [$.primary_expression, $.type_parameter, $._primary_type],
+      [$.primary_expression, $.type_parameter, $._primary_type, $.labeled_statement],
+      [$.type_parameter, $.pattern],
+      [$.type_parameter, $.assignment_variable_expression, $.object_assignment_pattern],
       [$.export_statement, $.class, $.class_declaration, $.method_definition, $.abstract_class_declaration],
       [$.export_statement, $.class, $.class_declaration, $.abstract_class_declaration],
       [$.export_statement, $.method_definition],
       [$.pattern, $.tuple_parameter],
+      [$.pattern, $.tuple_parameter, $.type_parameter],
+      [$.pattern, $.index_signature, $.type_parameter],
       [$.pattern, $.index_signature],
 
       [$.function, $.call_signature],
@@ -141,9 +182,6 @@ module.exports = function defineGrammar(dialect) {
     ]),
 
     inline: ($, previous) => previous
-      .filter(rule => ![
-        '_formal_parameter',
-      ].includes(rule.name))
       .concat([
         $._type_identifier,
         $._enum_member,
@@ -179,8 +217,8 @@ module.exports = function defineGrammar(dialect) {
         )
       ),
 
-      // override original catch_clause, add optional type annotation
-      catch_clause: $ => seq(
+      // override original catch, add optional type annotation
+      catch: $ => seq(
         'catch',
         optional(
           seq(
@@ -189,20 +227,20 @@ module.exports = function defineGrammar(dialect) {
             ')'
           )
         ),
-        field('body', $.statement_block)
+        $.statement_block
       ),
 
       call_expression: $ => choice(
         prec('call', seq(
           field('function', $.expression),
           field('type_arguments', optional($.type_arguments)),
-          field('arguments', choice($.arguments, $.template_string))
+          field('argument_list_parens', choice($.arguments, $.template_string))
         )),
         prec('member', seq(
           field('function', $.primary_expression),
           '?.',
           field('type_arguments', optional($.type_arguments)),
-          field('arguments', $.arguments)
+          field('argument_list_parens', $.arguments)
         ))
       ),
 
@@ -210,7 +248,7 @@ module.exports = function defineGrammar(dialect) {
         'new',
         field('constructor', $.primary_expression),
         field('type_arguments', optional($.type_arguments)),
-        field('arguments', optional($.arguments))
+        field('argument_list_parens', optional($.arguments))
       )),
 
       _augmented_assignment_lhs: ($, previous) => choice(previous, $.non_null_expression),
@@ -251,7 +289,7 @@ module.exports = function defineGrammar(dialect) {
         field('function_name', $.identifier),
         $.call_signature,
         field('body', $.statement_block),
-        optional($._automatic_semicolon)
+        optional($.automatic_semicolon)
       )),
 
       jsx_start_opening_element: $ => seq(
@@ -356,16 +394,12 @@ module.exports = function defineGrammar(dialect) {
         $.call_signature
       ),
 
-      parenthesized_expression: ($, previous) => seq(
-        '(',
-        choice(
-          seq($.expression, optional($.type_annotation)),
-          $.sequence_expression
-        ),
-        ')'
+      expressions: ($, previous) => choice(
+        seq($.expression, optional($.type_annotation)),
+        $.sequence_expression
       ),
 
-      _formal_parameter: $ => choice(
+      parameter: $ => choice(
         $.required_parameter,
         $.optional_parameter
       ),
@@ -418,7 +452,7 @@ module.exports = function defineGrammar(dialect) {
         $.module_declaration,
         prec('declaration', $.internal_module),
         $.type_alias_declaration,
-        $.enum_declaration,
+        $.enum,
         $.interface_declaration,
         $.import_alias,
         $.ambient_declaration
@@ -488,7 +522,7 @@ module.exports = function defineGrammar(dialect) {
         optional(field('type_parameters', $.type_parameters)),
         optional_with_placeholder('class_heritage_placeholder', $.class_heritage),
         field('body', $.class_body),
-        optional($._automatic_semicolon)
+        optional($.automatic_semicolon)
       )),
 
       module_declaration: $ => seq(
@@ -540,26 +574,26 @@ module.exports = function defineGrammar(dialect) {
         )))
       )),
 
-      enum_declaration: $ => seq(
+      enum: $ => seq(
         optional_with_placeholder('modifier_list_placeholder', $.const_modifier),
         'enum',
-        field('name', $.identifier),
-        field('body', $.enum_body)
-      ),
-
-      enum_body: $ => seq(
+        $.identifier,
         '{',
-        optional(seq(
-          sepBy1(',', choice(
-            $._property_name,
-            $.enum_assignment
-          )),
-          optional(',')
-        )),
+        optional_with_placeholder('enum_member_list', $.enum_member_list_inner),
         '}'
       ),
 
-      enum_assignment: $ => seq(
+      enum_member_list_inner: $ => seq(
+        sepBy1(',', 
+          choice(
+            $._property_name,
+            $.enum_constant
+          )
+        ),
+        optional(',')
+      ),
+
+      enum_constant: $ => seq(
         $._property_name,
         $.initializer
       ),
@@ -798,7 +832,7 @@ module.exports = function defineGrammar(dialect) {
       ),
 
       call_signature: $ => seq(
-        optional(field('type_parameters', $.type_parameters)),
+        optional_with_placeholder('type_parameters', $.type_parameter), 
         field('parameters', $.formal_parameters),
         optional_with_placeholder('optional_type_annotation',
           choice($.type_annotation, $.asserts, $.type_predicate_annotation)
