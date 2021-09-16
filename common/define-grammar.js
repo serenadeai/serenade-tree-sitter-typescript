@@ -158,6 +158,9 @@ module.exports = function defineGrammar(dialect) {
       [$.property_name, $.type_parameter],
       [$.property_name, $.public_field_definition],
       [$.assignment_variable, $._primary_type],
+
+      [$.labeled_statement, $.type_parameter, $.property_name],
+      
       // [$.primary_expression, $.method_definition, $.method_signature],
       // [$.primary_expression, $.identifier_or_reserved_identifier, $.assignment_variable],
       // [$.primary_expression, $.identifier_or_reserved_identifier, $.type_parameter, $.assignment_variable],
@@ -389,8 +392,8 @@ module.exports = function defineGrammar(dialect) {
       export_statement: ($, previous) => choice(
         previous,
         seq('export', 'type', $.export_clause),
-        seq('export', '=', $.identifier),
-        seq('export', 'as', 'namespace', $.identifier)
+        seq('export', '=', $.identifier, $._semicolon),
+        seq('export', 'as', 'namespace', $.identifier, $._semicolon)
       ),
 
       non_null_expression: $ => prec.left('unary', seq(
@@ -441,7 +444,7 @@ module.exports = function defineGrammar(dialect) {
         $.call_signature_
       ),
 
-      _expressions: ($, previous) => choice(
+      parenthesized_expression_inner: ($, previous) =>  choice(
         seq($.expression, optional($.type_annotation)),
         $.sequence_expression
       ),

@@ -736,17 +736,17 @@
             "named": true
           }
         ]
-      },
-      "left": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "assignment_variable",
-            "named": true
-          }
-        ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "assignment_variable",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -806,15 +806,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
           "type": "array_pattern",
-          "named": true
-        },
-        {
-          "type": "expression",
           "named": true
         },
         {
@@ -834,15 +830,11 @@
           "named": true
         },
         {
-          "type": "sequence_expression",
+          "type": "parenthesized_expression",
           "named": true
         },
         {
           "type": "subscript_expression",
-          "named": true
-        },
-        {
-          "type": "type_annotation",
           "named": true
         },
         {
@@ -1134,23 +1126,11 @@
         ]
       },
       "left_": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
             "type": "array_pattern",
-            "named": true
-          },
-          {
-            "type": "expression",
             "named": true
           },
           {
@@ -1170,15 +1150,11 @@
             "named": true
           },
           {
-            "type": "sequence_expression",
+            "type": "parenthesized_expression",
             "named": true
           },
           {
             "type": "subscript_expression",
-            "named": true
-          },
-          {
-            "type": "type_annotation",
             "named": true
           },
           {
@@ -1396,7 +1372,7 @@
     "named": true,
     "fields": {
       "value": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
@@ -1405,10 +1381,6 @@
           },
           {
             "type": "sequence_expression",
-            "named": true
-          },
-          {
-            "type": "type_annotation",
             "named": true
           }
         ]
@@ -2152,19 +2124,11 @@
     "named": true,
     "fields": {
       "condition": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "expression",
-            "named": true
-          },
-          {
-            "type": "sequence_expression",
-            "named": true
-          },
-          {
-            "type": "type_annotation",
+            "type": "parenthesized_expression_inner",
             "named": true
           }
         ]
@@ -2457,7 +2421,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -2466,10 +2430,6 @@
         },
         {
           "type": "sequence_expression",
-          "named": true
-        },
-        {
-          "type": "type_annotation",
           "named": true
         }
       ]
@@ -2679,7 +2639,7 @@
     "named": true,
     "fields": {
       "block_collection": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
@@ -2688,10 +2648,6 @@
           },
           {
             "type": "sequence_expression",
-            "named": true
-          },
-          {
-            "type": "type_annotation",
             "named": true
           }
         ]
@@ -3222,19 +3178,11 @@
     "named": true,
     "fields": {
       "condition": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "expression",
-            "named": true
-          },
-          {
-            "type": "sequence_expression",
-            "named": true
-          },
-          {
-            "type": "type_annotation",
+            "type": "parenthesized_expression_inner",
             "named": true
           }
         ]
@@ -5255,6 +5203,21 @@
     "named": true,
     "fields": {},
     "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "parenthesized_expression_inner",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parenthesized_expression_inner",
+    "named": true,
+    "fields": {},
+    "children": {
       "multiple": true,
       "required": true,
       "types": [
@@ -5703,7 +5666,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -5712,10 +5675,6 @@
         },
         {
           "type": "sequence_expression",
-          "named": true
-        },
-        {
-          "type": "type_annotation",
           "named": true
         }
       ]
@@ -5909,7 +5868,7 @@
     "named": true,
     "fields": {
       "index": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
@@ -5918,10 +5877,6 @@
           },
           {
             "type": "sequence_expression",
-            "named": true
-          },
-          {
-            "type": "type_annotation",
             "named": true
           }
         ]
@@ -6110,7 +6065,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -6119,10 +6074,6 @@
         },
         {
           "type": "sequence_expression",
-          "named": true
-        },
-        {
-          "type": "type_annotation",
           "named": true
         }
       ]
@@ -6183,10 +6134,6 @@
           {
             "type": "throw",
             "named": false
-          },
-          {
-            "type": "type_annotation",
-            "named": true
           }
         ]
       }
@@ -6777,7 +6724,7 @@
         ]
       },
       "condition": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
@@ -6786,10 +6733,6 @@
           },
           {
             "type": "sequence_expression",
-            "named": true
-          },
-          {
-            "type": "type_annotation",
             "named": true
           }
         ]
@@ -7335,11 +7278,11 @@
   },
   {
     "type": "number",
-    "named": true
+    "named": false
   },
   {
     "type": "number",
-    "named": false
+    "named": true
   },
   {
     "type": "of",
