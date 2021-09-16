@@ -48,7 +48,7 @@ module.exports = function defineGrammar(dialect) {
       [$.nested_type_identifier, $.generic_type, $._primary_type, $.lookup_type, $.index_type_query, $.type],
       ['keyword', 'modifier', $.type_parameter], 
       [$.assignment_variable, $.type_parameter], 
-      [$.identifier_or_reserved_identifier, $.type_alias],
+      // [$.identifier_or_reserved_identifier, $.type_alias],
       //   $.abstract_modifier,
       //   $.accessibility_modifier, 
       //   $.async_modifier, 
@@ -104,7 +104,7 @@ module.exports = function defineGrammar(dialect) {
       [$.primary_expression, $.labeled_statement, $.predefined_type],
       [$.property_name, $.module_declaration],
       [$.property_name, $.internal_module],
-      [$.identifier_or_reserved_identifier, $.public_field_definition],
+      // [$.identifier_or_reserved_identifier, $.public_field_definition],
 
       [$.parameter_name, $.predefined_type],
       [$.parameter_name, $._primary_type],
@@ -153,30 +153,35 @@ module.exports = function defineGrammar(dialect) {
       [$.primary_expression, $.type_parameter, $.labeled_statement],
       [$.primary_expression, $.type_parameter, $.property_name],
       [$.primary_expression, $.type_parameter, $.property_name, $.labeled_statement],
+      [$.primary_expression, $.internal_module],
+      [$.property_name, $.type_alias],
+      [$.property_name, $.type_parameter],
+      [$.property_name, $.public_field_definition],
+      [$.assignment_variable, $._primary_type],
       // [$.primary_expression, $.method_definition, $.method_signature],
-      [$.primary_expression, $.identifier_or_reserved_identifier, $.assignment_variable],
-      [$.primary_expression, $.identifier_or_reserved_identifier, $.type_parameter, $.assignment_variable],
-      [$.primary_expression, $.identifier_or_reserved_identifier, $.type_parameter],
-      [$.primary_expression, $.identifier_or_reserved_identifier, $.generic_type],
-      [$.primary_expression, $.identifier_or_reserved_identifier, $._primary_type],
-      [$.primary_expression, $.identifier_or_reserved_identifier, $.optional_tuple_parameter, $._primary_type],
-      [$.primary_expression, $.identifier_or_reserved_identifier, $.rest_pattern, $._primary_type],
-      [$.primary_expression, $.identifier_or_reserved_identifier, $.type_parameter, $._primary_type],
+      // [$.primary_expression, $.identifier_or_reserved_identifier, $.assignment_variable],
+      // [$.primary_expression, $.identifier_or_reserved_identifier, $.type_parameter, $.assignment_variable],
+      // [$.primary_expression, $.identifier_or_reserved_identifier, $.type_parameter],
+      // [$.primary_expression, $.identifier_or_reserved_identifier, $.generic_type],
+      // [$.primary_expression, $.identifier_or_reserved_identifier, $._primary_type],
+      // [$.primary_expression, $.identifier_or_reserved_identifier, $.optional_tuple_parameter, $._primary_type],
+      // [$.primary_expression, $.identifier_or_reserved_identifier, $.rest_pattern, $._primary_type],
+      // [$.primary_expression, $.identifier_or_reserved_identifier, $.type_parameter, $._primary_type],
 
       // [$.identifier_or_reserved_identifier, $.method_definition, $.lambda],
       // [$.identifier_or_reserved_identifier, $.method_definition, $.method_signature],
-      [$.identifier_or_reserved_identifier, $.internal_module],
-      [$.identifier_or_reserved_identifier, $.module_declaration],
-      [$.identifier_or_reserved_identifier, $.type_parameter],
-      [$.identifier_or_reserved_identifier, $.method_signature],
-      [$.identifier_or_reserved_identifier, $._primary_type],
-      [$.identifier_or_reserved_identifier, $.predefined_type],
-      [$.identifier_or_reserved_identifier, $.tuple_parameter],
-      [$.identifier_or_reserved_identifier, $.tuple_parameter, $.type_parameter],
-      [$.identifier_or_reserved_identifier, $.nested_identifier, $.nested_type_identifier, $.primary_expression],
+      // [$.identifier_or_reserved_identifier, $.internal_module],
+      // [$.identifier_or_reserved_identifier, $.module_declaration],
+      // [$.identifier_or_reserved_identifier, $.type_parameter],
+      // [$.identifier_or_reserved_identifier, $.method_signature],
+      // [$.identifier_or_reserved_identifier, $._primary_type],
+      // [$.identifier_or_reserved_identifier, $.predefined_type],
+      // [$.identifier_or_reserved_identifier, $.tuple_parameter],
+      // [$.identifier_or_reserved_identifier, $.tuple_parameter, $.type_parameter],
+      // [$.identifier_or_reserved_identifier, $.nested_identifier, $.nested_type_identifier, $.primary_expression],
       // [$.identifier_or_reserved_identifier, $.method_signature, $.lambda, $.method_definition],
 
-      [$.assignment_variable, $.identifier_or_reserved_identifier, $.export_statement],
+      // [$.assignment_variable, $.identifier_or_reserved_identifier, $.export_statement],
 
       [$.assignment_variable, $.predefined_type],
       [$.assignment_variable, $.type_parameter, $.rest_pattern],
@@ -302,7 +307,7 @@ module.exports = function defineGrammar(dialect) {
         $.non_null_expression,
       ),
 
-      // If the dialect is regular typescript, we exclude JSX expressions and
+      // If the dialect is regular typescript, we exclude JSX _expressions and
       // include type assertions. If the dialect is TSX, we do the opposite.
       expression: ($, previous) => {
         const choices = [
@@ -436,7 +441,7 @@ module.exports = function defineGrammar(dialect) {
         $.call_signature_
       ),
 
-      expressions: ($, previous) => choice(
+      _expressions: ($, previous) => choice(
         seq($.expression, optional($.type_annotation)),
         $.sequence_expression
       ),
@@ -924,7 +929,10 @@ module.exports = function defineGrammar(dialect) {
         '[',
         choice(
           seq(
-            $.identifier_or_reserved_identifier,
+            choice(
+              $.identifier,
+              alias($._reserved_identifier, $.identifier)
+            ),
             ':',
             $.type,
           ),

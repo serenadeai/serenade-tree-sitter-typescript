@@ -206,7 +206,11 @@
         "named": true
       },
       {
-        "type": "identifier_or_reserved_identifier",
+        "type": "identifier",
+        "named": true
+      },
+      {
+        "type": "identifier_",
         "named": true
       },
       {
@@ -245,10 +249,6 @@
       },
       {
         "type": "identifier",
-        "named": true
-      },
-      {
-        "type": "identifier_or_reserved_identifier",
         "named": true
       },
       {
@@ -904,23 +904,15 @@
     "named": true,
     "fields": {
       "left": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": "expression",
+            "type": "identifier",
             "named": true
           },
           {
-            "type": "identifier_or_reserved_identifier",
+            "type": "identifier_",
             "named": true
           },
           {
@@ -932,15 +924,11 @@
             "named": true
           },
           {
-            "type": "sequence_expression",
+            "type": "parenthesized_expression",
             "named": true
           },
           {
             "type": "subscript_expression",
-            "named": true
-          },
-          {
-            "type": "type_annotation",
             "named": true
           }
         ]
@@ -3202,94 +3190,6 @@
     }
   },
   {
-    "type": "identifier_or_reserved_identifier",
-    "named": true,
-    "fields": {
-      "identifier": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "any",
-            "named": false
-          },
-          {
-            "type": "async",
-            "named": false
-          },
-          {
-            "type": "boolean",
-            "named": false
-          },
-          {
-            "type": "declare",
-            "named": false
-          },
-          {
-            "type": "export",
-            "named": false
-          },
-          {
-            "type": "get",
-            "named": false
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "module",
-            "named": false
-          },
-          {
-            "type": "namespace",
-            "named": false
-          },
-          {
-            "type": "number",
-            "named": false
-          },
-          {
-            "type": "private",
-            "named": false
-          },
-          {
-            "type": "protected",
-            "named": false
-          },
-          {
-            "type": "public",
-            "named": false
-          },
-          {
-            "type": "readonly",
-            "named": false
-          },
-          {
-            "type": "set",
-            "named": false
-          },
-          {
-            "type": "static",
-            "named": false
-          },
-          {
-            "type": "string",
-            "named": false
-          },
-          {
-            "type": "symbol",
-            "named": false
-          },
-          {
-            "type": "type",
-            "named": false
-          }
-        ]
-      }
-    }
-  },
-  {
     "type": "if",
     "named": true,
     "fields": {
@@ -3612,7 +3512,7 @@
       "required": true,
       "types": [
         {
-          "type": "identifier_or_reserved_identifier",
+          "type": "identifier",
           "named": true
         },
         {
@@ -4283,8 +4183,80 @@
         "required": false,
         "types": [
           {
-            "type": "identifier_or_reserved_identifier",
+            "type": "any",
+            "named": false
+          },
+          {
+            "type": "async",
+            "named": false
+          },
+          {
+            "type": "boolean",
+            "named": false
+          },
+          {
+            "type": "declare",
+            "named": false
+          },
+          {
+            "type": "export",
+            "named": false
+          },
+          {
+            "type": "get",
+            "named": false
+          },
+          {
+            "type": "identifier",
             "named": true
+          },
+          {
+            "type": "module",
+            "named": false
+          },
+          {
+            "type": "namespace",
+            "named": false
+          },
+          {
+            "type": "number",
+            "named": false
+          },
+          {
+            "type": "private",
+            "named": false
+          },
+          {
+            "type": "protected",
+            "named": false
+          },
+          {
+            "type": "public",
+            "named": false
+          },
+          {
+            "type": "readonly",
+            "named": false
+          },
+          {
+            "type": "set",
+            "named": false
+          },
+          {
+            "type": "static",
+            "named": false
+          },
+          {
+            "type": "string",
+            "named": false
+          },
+          {
+            "type": "symbol",
+            "named": false
+          },
+          {
+            "type": "type",
+            "named": false
           }
         ]
       },
@@ -5364,24 +5336,96 @@
         "required": true,
         "types": [
           {
+            "type": "any",
+            "named": false
+          },
+          {
+            "type": "async",
+            "named": false
+          },
+          {
+            "type": "boolean",
+            "named": false
+          },
+          {
             "type": "computed_property_name",
             "named": true
           },
           {
-            "type": "identifier_or_reserved_identifier",
+            "type": "declare",
+            "named": false
+          },
+          {
+            "type": "export",
+            "named": false
+          },
+          {
+            "type": "get",
+            "named": false
+          },
+          {
+            "type": "identifier",
             "named": true
+          },
+          {
+            "type": "module",
+            "named": false
+          },
+          {
+            "type": "namespace",
+            "named": false
+          },
+          {
+            "type": "number",
+            "named": false
           },
           {
             "type": "number",
             "named": true
           },
           {
+            "type": "private",
+            "named": false
+          },
+          {
             "type": "private_property_identifier",
             "named": true
           },
           {
+            "type": "protected",
+            "named": false
+          },
+          {
+            "type": "public",
+            "named": false
+          },
+          {
+            "type": "readonly",
+            "named": false
+          },
+          {
+            "type": "set",
+            "named": false
+          },
+          {
+            "type": "static",
+            "named": false
+          },
+          {
+            "type": "string",
+            "named": false
+          },
+          {
             "type": "string",
             "named": true
+          },
+          {
+            "type": "symbol",
+            "named": false
+          },
+          {
+            "type": "type",
+            "named": false
           }
         ]
       }
@@ -5732,182 +5776,6 @@
     }
   },
   {
-    "type": "shorthand_property_identifier",
-    "named": true,
-    "fields": {
-      "identifier": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "any",
-            "named": false
-          },
-          {
-            "type": "async",
-            "named": false
-          },
-          {
-            "type": "boolean",
-            "named": false
-          },
-          {
-            "type": "declare",
-            "named": false
-          },
-          {
-            "type": "export",
-            "named": false
-          },
-          {
-            "type": "get",
-            "named": false
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "module",
-            "named": false
-          },
-          {
-            "type": "namespace",
-            "named": false
-          },
-          {
-            "type": "number",
-            "named": false
-          },
-          {
-            "type": "private",
-            "named": false
-          },
-          {
-            "type": "protected",
-            "named": false
-          },
-          {
-            "type": "public",
-            "named": false
-          },
-          {
-            "type": "readonly",
-            "named": false
-          },
-          {
-            "type": "set",
-            "named": false
-          },
-          {
-            "type": "static",
-            "named": false
-          },
-          {
-            "type": "string",
-            "named": false
-          },
-          {
-            "type": "symbol",
-            "named": false
-          },
-          {
-            "type": "type",
-            "named": false
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "shorthand_property_identifier_pattern",
-    "named": true,
-    "fields": {
-      "identifier": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "any",
-            "named": false
-          },
-          {
-            "type": "async",
-            "named": false
-          },
-          {
-            "type": "boolean",
-            "named": false
-          },
-          {
-            "type": "declare",
-            "named": false
-          },
-          {
-            "type": "export",
-            "named": false
-          },
-          {
-            "type": "get",
-            "named": false
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "module",
-            "named": false
-          },
-          {
-            "type": "namespace",
-            "named": false
-          },
-          {
-            "type": "number",
-            "named": false
-          },
-          {
-            "type": "private",
-            "named": false
-          },
-          {
-            "type": "protected",
-            "named": false
-          },
-          {
-            "type": "public",
-            "named": false
-          },
-          {
-            "type": "readonly",
-            "named": false
-          },
-          {
-            "type": "set",
-            "named": false
-          },
-          {
-            "type": "static",
-            "named": false
-          },
-          {
-            "type": "string",
-            "named": false
-          },
-          {
-            "type": "symbol",
-            "named": false
-          },
-          {
-            "type": "type",
-            "named": false
-          }
-        ]
-      }
-    }
-  },
-  {
     "type": "spread_element",
     "named": true,
     "fields": {},
@@ -5920,94 +5788,6 @@
           "named": true
         }
       ]
-    }
-  },
-  {
-    "type": "statement_identifier",
-    "named": true,
-    "fields": {
-      "identifier": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "any",
-            "named": false
-          },
-          {
-            "type": "async",
-            "named": false
-          },
-          {
-            "type": "boolean",
-            "named": false
-          },
-          {
-            "type": "declare",
-            "named": false
-          },
-          {
-            "type": "export",
-            "named": false
-          },
-          {
-            "type": "get",
-            "named": false
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "module",
-            "named": false
-          },
-          {
-            "type": "namespace",
-            "named": false
-          },
-          {
-            "type": "number",
-            "named": false
-          },
-          {
-            "type": "private",
-            "named": false
-          },
-          {
-            "type": "protected",
-            "named": false
-          },
-          {
-            "type": "public",
-            "named": false
-          },
-          {
-            "type": "readonly",
-            "named": false
-          },
-          {
-            "type": "set",
-            "named": false
-          },
-          {
-            "type": "static",
-            "named": false
-          },
-          {
-            "type": "string",
-            "named": false
-          },
-          {
-            "type": "symbol",
-            "named": false
-          },
-          {
-            "type": "type",
-            "named": false
-          }
-        ]
-      }
     }
   },
   {
@@ -7593,6 +7373,18 @@
   {
     "type": "set",
     "named": false
+  },
+  {
+    "type": "shorthand_property_identifier",
+    "named": true
+  },
+  {
+    "type": "shorthand_property_identifier_pattern",
+    "named": true
+  },
+  {
+    "type": "statement_identifier",
+    "named": true
   },
   {
     "type": "static",
