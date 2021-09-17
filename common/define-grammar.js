@@ -160,6 +160,9 @@ module.exports = function defineGrammar(dialect) {
       [$.assignment_variable, $._primary_type],
 
       [$.labeled_statement, $.type_parameter, $.property_name],
+
+      [$.accessibility_modifier, $.property_name],
+      [$.readonly_modifier, $.property_name],
       
       // [$.primary_expression, $.method_definition, $.method_signature],
       // [$.primary_expression, $.identifier_or_reserved_identifier, $.assignment_variable],
@@ -228,14 +231,14 @@ module.exports = function defineGrammar(dialect) {
       ]),
 
     rules: {
-      abstract_modifier: $ => prec('modifier', field('modifier', 'abstract')),
-      accessibility_modifier: $ => prec('modifier', field('modifier', choice(
+      abstract_modifier: $ => field('modifier', 'abstract'),
+      accessibility_modifier: $ => field('modifier', choice(
         'public',
         'private',
         'protected'
-      ))),
-      const_modifier: $ => prec('modifier', field('modifier', 'const')),
-      readonly_modifier: $ => prec('modifier', field('modifier', 'readonly')),
+      )),
+      const_modifier: $ => field('modifier', 'const'),
+      readonly_modifier: $ => field('modifier', 'readonly'),
 
       public_field_definition: $ => seq(
         choice(

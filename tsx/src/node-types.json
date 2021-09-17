@@ -70,68 +70,6 @@
     ]
   },
   {
-    "type": "declaration",
-    "named": true,
-    "subtypes": [
-      {
-        "type": "abstract_class_declaration",
-        "named": true
-      },
-      {
-        "type": "ambient_declaration",
-        "named": true
-      },
-      {
-        "type": "class_declaration",
-        "named": true
-      },
-      {
-        "type": "enum",
-        "named": true
-      },
-      {
-        "type": "function_declaration",
-        "named": true
-      },
-      {
-        "type": "function_signature",
-        "named": true
-      },
-      {
-        "type": "generator_function_declaration",
-        "named": true
-      },
-      {
-        "type": "import_alias",
-        "named": true
-      },
-      {
-        "type": "interface",
-        "named": true
-      },
-      {
-        "type": "internal_module",
-        "named": true
-      },
-      {
-        "type": "lexical_declaration",
-        "named": true
-      },
-      {
-        "type": "module_declaration",
-        "named": true
-      },
-      {
-        "type": "type_alias",
-        "named": true
-      },
-      {
-        "type": "variable_declaration",
-        "named": true
-      }
-    ]
-  },
-  {
     "type": "expression",
     "named": true,
     "subtypes": [
@@ -1182,79 +1120,7 @@
         "required": false,
         "types": [
           {
-            "type": "brace_enclosed_body",
-            "named": true
-          },
-          {
-            "type": "break_statement",
-            "named": true
-          },
-          {
-            "type": "continue_statement",
-            "named": true
-          },
-          {
-            "type": "debugger_statement",
-            "named": true
-          },
-          {
-            "type": "declaration",
-            "named": true
-          },
-          {
-            "type": "do_statement",
-            "named": true
-          },
-          {
-            "type": "empty_statement",
-            "named": true
-          },
-          {
-            "type": "export_statement",
-            "named": true
-          },
-          {
-            "type": "expression_statement",
-            "named": true
-          },
-          {
-            "type": "for",
-            "named": true
-          },
-          {
-            "type": "if",
-            "named": true
-          },
-          {
-            "type": "import",
-            "named": true
-          },
-          {
-            "type": "labeled_statement",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
-            "type": "switch_statement",
-            "named": true
-          },
-          {
-            "type": "throw_statement",
-            "named": true
-          },
-          {
-            "type": "try",
-            "named": true
-          },
-          {
-            "type": "while",
-            "named": true
-          },
-          {
-            "type": "with_statement",
+            "type": "statement",
             "named": true
           }
         ]
@@ -1399,79 +1265,7 @@
       "required": false,
       "types": [
         {
-          "type": "brace_enclosed_body",
-          "named": true
-        },
-        {
-          "type": "break_statement",
-          "named": true
-        },
-        {
-          "type": "continue_statement",
-          "named": true
-        },
-        {
-          "type": "debugger_statement",
-          "named": true
-        },
-        {
-          "type": "declaration",
-          "named": true
-        },
-        {
-          "type": "do_statement",
-          "named": true
-        },
-        {
-          "type": "empty_statement",
-          "named": true
-        },
-        {
-          "type": "export_statement",
-          "named": true
-        },
-        {
-          "type": "expression_statement",
-          "named": true
-        },
-        {
-          "type": "for",
-          "named": true
-        },
-        {
-          "type": "if",
-          "named": true
-        },
-        {
-          "type": "import",
-          "named": true
-        },
-        {
-          "type": "labeled_statement",
-          "named": true
-        },
-        {
-          "type": "return",
-          "named": true
-        },
-        {
-          "type": "switch_statement",
-          "named": true
-        },
-        {
-          "type": "throw_statement",
-          "named": true
-        },
-        {
-          "type": "try",
-          "named": true
-        },
-        {
-          "type": "while",
-          "named": true
-        },
-        {
-          "type": "with_statement",
+          "type": "statement",
           "named": true
         }
       ]
@@ -1564,6 +1358,16 @@
           }
         ]
       },
+      "identifier": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      },
       "implements_list_optional": {
         "multiple": false,
         "required": false,
@@ -1606,72 +1410,6 @@
         "types": [
           {
             "type": "class_member",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "class_declaration",
-    "named": true,
-    "fields": {
-      "brace_enclosed_body": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "class_body",
-            "named": true
-          }
-        ]
-      },
-      "decorator_list": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "decorator",
-            "named": true
-          }
-        ]
-      },
-      "extends_optional": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "extends_clause",
-            "named": true
-          }
-        ]
-      },
-      "identifier": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "type_identifier",
-            "named": true
-          }
-        ]
-      },
-      "implements_list_optional": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "implements_list_present",
-            "named": true
-          }
-        ]
-      },
-      "type_parameters": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "type_parameters",
             "named": true
           }
         ]
@@ -1905,6 +1643,73 @@
     "fields": {}
   },
   {
+    "type": "declaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "abstract_class_declaration",
+          "named": true
+        },
+        {
+          "type": "ambient_declaration",
+          "named": true
+        },
+        {
+          "type": "class",
+          "named": true
+        },
+        {
+          "type": "enum",
+          "named": true
+        },
+        {
+          "type": "function",
+          "named": true
+        },
+        {
+          "type": "function_signature",
+          "named": true
+        },
+        {
+          "type": "generator_function_declaration",
+          "named": true
+        },
+        {
+          "type": "import_alias",
+          "named": true
+        },
+        {
+          "type": "interface",
+          "named": true
+        },
+        {
+          "type": "internal_module",
+          "named": true
+        },
+        {
+          "type": "lexical_declaration",
+          "named": true
+        },
+        {
+          "type": "module_declaration",
+          "named": true
+        },
+        {
+          "type": "type_alias",
+          "named": true
+        },
+        {
+          "type": "variable_declaration",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "decorator",
     "named": true,
     "fields": {},
@@ -1951,79 +1756,7 @@
         "required": true,
         "types": [
           {
-            "type": "brace_enclosed_body",
-            "named": true
-          },
-          {
-            "type": "break_statement",
-            "named": true
-          },
-          {
-            "type": "continue_statement",
-            "named": true
-          },
-          {
-            "type": "debugger_statement",
-            "named": true
-          },
-          {
-            "type": "declaration",
-            "named": true
-          },
-          {
-            "type": "do_statement",
-            "named": true
-          },
-          {
-            "type": "empty_statement",
-            "named": true
-          },
-          {
-            "type": "export_statement",
-            "named": true
-          },
-          {
-            "type": "expression_statement",
-            "named": true
-          },
-          {
-            "type": "for",
-            "named": true
-          },
-          {
-            "type": "if",
-            "named": true
-          },
-          {
-            "type": "import",
-            "named": true
-          },
-          {
-            "type": "labeled_statement",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
-            "type": "switch_statement",
-            "named": true
-          },
-          {
-            "type": "throw_statement",
-            "named": true
-          },
-          {
-            "type": "try",
-            "named": true
-          },
-          {
-            "type": "while",
-            "named": true
-          },
-          {
-            "type": "with_statement",
+            "type": "statement",
             "named": true
           }
         ]
@@ -2049,79 +1782,7 @@
       "required": true,
       "types": [
         {
-          "type": "brace_enclosed_body",
-          "named": true
-        },
-        {
-          "type": "break_statement",
-          "named": true
-        },
-        {
-          "type": "continue_statement",
-          "named": true
-        },
-        {
-          "type": "debugger_statement",
-          "named": true
-        },
-        {
-          "type": "declaration",
-          "named": true
-        },
-        {
-          "type": "do_statement",
-          "named": true
-        },
-        {
-          "type": "empty_statement",
-          "named": true
-        },
-        {
-          "type": "export_statement",
-          "named": true
-        },
-        {
-          "type": "expression_statement",
-          "named": true
-        },
-        {
-          "type": "for",
-          "named": true
-        },
-        {
-          "type": "if",
-          "named": true
-        },
-        {
-          "type": "import",
-          "named": true
-        },
-        {
-          "type": "labeled_statement",
-          "named": true
-        },
-        {
-          "type": "return",
-          "named": true
-        },
-        {
-          "type": "switch_statement",
-          "named": true
-        },
-        {
-          "type": "throw_statement",
-          "named": true
-        },
-        {
-          "type": "try",
-          "named": true
-        },
-        {
-          "type": "while",
-          "named": true
-        },
-        {
-          "type": "with_statement",
+          "type": "statement",
           "named": true
         }
       ]
@@ -2146,79 +1807,7 @@
         "required": true,
         "types": [
           {
-            "type": "brace_enclosed_body",
-            "named": true
-          },
-          {
-            "type": "break_statement",
-            "named": true
-          },
-          {
-            "type": "continue_statement",
-            "named": true
-          },
-          {
-            "type": "debugger_statement",
-            "named": true
-          },
-          {
-            "type": "declaration",
-            "named": true
-          },
-          {
-            "type": "do_statement",
-            "named": true
-          },
-          {
-            "type": "empty_statement",
-            "named": true
-          },
-          {
-            "type": "export_statement",
-            "named": true
-          },
-          {
-            "type": "expression_statement",
-            "named": true
-          },
-          {
-            "type": "for",
-            "named": true
-          },
-          {
-            "type": "if",
-            "named": true
-          },
-          {
-            "type": "import",
-            "named": true
-          },
-          {
-            "type": "labeled_statement",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
-            "type": "switch_statement",
-            "named": true
-          },
-          {
-            "type": "throw_statement",
-            "named": true
-          },
-          {
-            "type": "try",
-            "named": true
-          },
-          {
-            "type": "while",
-            "named": true
-          },
-          {
-            "type": "with_statement",
+            "type": "statement",
             "named": true
           }
         ]
@@ -2553,79 +2142,7 @@
         "required": true,
         "types": [
           {
-            "type": "brace_enclosed_body",
-            "named": true
-          },
-          {
-            "type": "break_statement",
-            "named": true
-          },
-          {
-            "type": "continue_statement",
-            "named": true
-          },
-          {
-            "type": "debugger_statement",
-            "named": true
-          },
-          {
-            "type": "declaration",
-            "named": true
-          },
-          {
-            "type": "do_statement",
-            "named": true
-          },
-          {
-            "type": "empty_statement",
-            "named": true
-          },
-          {
-            "type": "export_statement",
-            "named": true
-          },
-          {
-            "type": "expression_statement",
-            "named": true
-          },
-          {
-            "type": "for",
-            "named": true
-          },
-          {
-            "type": "if",
-            "named": true
-          },
-          {
-            "type": "import",
-            "named": true
-          },
-          {
-            "type": "labeled_statement",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
-            "type": "switch_statement",
-            "named": true
-          },
-          {
-            "type": "throw_statement",
-            "named": true
-          },
-          {
-            "type": "try",
-            "named": true
-          },
-          {
-            "type": "while",
-            "named": true
-          },
-          {
-            "type": "with_statement",
+            "type": "statement",
             "named": true
           }
         ]
@@ -2665,79 +2182,7 @@
         "required": true,
         "types": [
           {
-            "type": "brace_enclosed_body",
-            "named": true
-          },
-          {
-            "type": "break_statement",
-            "named": true
-          },
-          {
-            "type": "continue_statement",
-            "named": true
-          },
-          {
-            "type": "debugger_statement",
-            "named": true
-          },
-          {
-            "type": "declaration",
-            "named": true
-          },
-          {
-            "type": "do_statement",
-            "named": true
-          },
-          {
-            "type": "empty_statement",
-            "named": true
-          },
-          {
-            "type": "export_statement",
-            "named": true
-          },
-          {
-            "type": "expression_statement",
-            "named": true
-          },
-          {
-            "type": "for",
-            "named": true
-          },
-          {
-            "type": "if",
-            "named": true
-          },
-          {
-            "type": "import",
-            "named": true
-          },
-          {
-            "type": "labeled_statement",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
-            "type": "switch_statement",
-            "named": true
-          },
-          {
-            "type": "throw_statement",
-            "named": true
-          },
-          {
-            "type": "try",
-            "named": true
-          },
-          {
-            "type": "while",
-            "named": true
-          },
-          {
-            "type": "with_statement",
+            "type": "statement",
             "named": true
           }
         ]
@@ -2777,29 +2222,10 @@
   {
     "type": "function",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "anonymous_function",
-          "named": true
-        },
-        {
-          "type": "named_function",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "function_declaration",
-    "named": true,
     "fields": {
       "function_name": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "identifier",
@@ -2819,7 +2245,7 @@
       },
       "parameters": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "formal_parameters",
@@ -2861,7 +2287,15 @@
       "required": true,
       "types": [
         {
+          "type": "anonymous_function",
+          "named": true
+        },
+        {
           "type": "brace_enclosed_body",
+          "named": true
+        },
+        {
+          "type": "named_function",
           "named": true
         }
       ]
@@ -3200,79 +2634,7 @@
         "required": true,
         "types": [
           {
-            "type": "brace_enclosed_body",
-            "named": true
-          },
-          {
-            "type": "break_statement",
-            "named": true
-          },
-          {
-            "type": "continue_statement",
-            "named": true
-          },
-          {
-            "type": "debugger_statement",
-            "named": true
-          },
-          {
-            "type": "declaration",
-            "named": true
-          },
-          {
-            "type": "do_statement",
-            "named": true
-          },
-          {
-            "type": "empty_statement",
-            "named": true
-          },
-          {
-            "type": "export_statement",
-            "named": true
-          },
-          {
-            "type": "expression_statement",
-            "named": true
-          },
-          {
-            "type": "for",
-            "named": true
-          },
-          {
-            "type": "if",
-            "named": true
-          },
-          {
-            "type": "import",
-            "named": true
-          },
-          {
-            "type": "labeled_statement",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
-            "type": "switch_statement",
-            "named": true
-          },
-          {
-            "type": "throw_statement",
-            "named": true
-          },
-          {
-            "type": "try",
-            "named": true
-          },
-          {
-            "type": "while",
-            "named": true
-          },
-          {
-            "type": "with_statement",
+            "type": "statement",
             "named": true
           }
         ]
@@ -4034,79 +3396,7 @@
       "required": true,
       "types": [
         {
-          "type": "brace_enclosed_body",
-          "named": true
-        },
-        {
-          "type": "break_statement",
-          "named": true
-        },
-        {
-          "type": "continue_statement",
-          "named": true
-        },
-        {
-          "type": "debugger_statement",
-          "named": true
-        },
-        {
-          "type": "declaration",
-          "named": true
-        },
-        {
-          "type": "do_statement",
-          "named": true
-        },
-        {
-          "type": "empty_statement",
-          "named": true
-        },
-        {
-          "type": "export_statement",
-          "named": true
-        },
-        {
-          "type": "expression_statement",
-          "named": true
-        },
-        {
-          "type": "for",
-          "named": true
-        },
-        {
-          "type": "if",
-          "named": true
-        },
-        {
-          "type": "import",
-          "named": true
-        },
-        {
-          "type": "labeled_statement",
-          "named": true
-        },
-        {
-          "type": "return",
-          "named": true
-        },
-        {
-          "type": "switch_statement",
-          "named": true
-        },
-        {
-          "type": "throw_statement",
-          "named": true
-        },
-        {
-          "type": "try",
-          "named": true
-        },
-        {
-          "type": "while",
-          "named": true
-        },
-        {
-          "type": "with_statement",
+          "type": "statement",
           "named": true
         }
       ]
@@ -5750,11 +5040,11 @@
     }
   },
   {
-    "type": "statement_list",
+    "type": "statement",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -5831,6 +5121,21 @@
         },
         {
           "type": "with_statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "statement_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "statement",
           "named": true
         }
       ]
@@ -5929,79 +5234,7 @@
       "required": false,
       "types": [
         {
-          "type": "brace_enclosed_body",
-          "named": true
-        },
-        {
-          "type": "break_statement",
-          "named": true
-        },
-        {
-          "type": "continue_statement",
-          "named": true
-        },
-        {
-          "type": "debugger_statement",
-          "named": true
-        },
-        {
-          "type": "declaration",
-          "named": true
-        },
-        {
-          "type": "do_statement",
-          "named": true
-        },
-        {
-          "type": "empty_statement",
-          "named": true
-        },
-        {
-          "type": "export_statement",
-          "named": true
-        },
-        {
-          "type": "expression_statement",
-          "named": true
-        },
-        {
-          "type": "for",
-          "named": true
-        },
-        {
-          "type": "if",
-          "named": true
-        },
-        {
-          "type": "import",
-          "named": true
-        },
-        {
-          "type": "labeled_statement",
-          "named": true
-        },
-        {
-          "type": "return",
-          "named": true
-        },
-        {
-          "type": "switch_statement",
-          "named": true
-        },
-        {
-          "type": "throw_statement",
-          "named": true
-        },
-        {
-          "type": "try",
-          "named": true
-        },
-        {
-          "type": "while",
-          "named": true
-        },
-        {
-          "type": "with_statement",
+          "type": "statement",
           "named": true
         }
       ]
@@ -6635,79 +5868,7 @@
         "required": true,
         "types": [
           {
-            "type": "brace_enclosed_body",
-            "named": true
-          },
-          {
-            "type": "break_statement",
-            "named": true
-          },
-          {
-            "type": "continue_statement",
-            "named": true
-          },
-          {
-            "type": "debugger_statement",
-            "named": true
-          },
-          {
-            "type": "declaration",
-            "named": true
-          },
-          {
-            "type": "do_statement",
-            "named": true
-          },
-          {
-            "type": "empty_statement",
-            "named": true
-          },
-          {
-            "type": "export_statement",
-            "named": true
-          },
-          {
-            "type": "expression_statement",
-            "named": true
-          },
-          {
-            "type": "for",
-            "named": true
-          },
-          {
-            "type": "if",
-            "named": true
-          },
-          {
-            "type": "import",
-            "named": true
-          },
-          {
-            "type": "labeled_statement",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
-            "type": "switch_statement",
-            "named": true
-          },
-          {
-            "type": "throw_statement",
-            "named": true
-          },
-          {
-            "type": "try",
-            "named": true
-          },
-          {
-            "type": "while",
-            "named": true
-          },
-          {
-            "type": "with_statement",
+            "type": "statement",
             "named": true
           }
         ]
@@ -6737,79 +5898,7 @@
         "required": true,
         "types": [
           {
-            "type": "brace_enclosed_body",
-            "named": true
-          },
-          {
-            "type": "break_statement",
-            "named": true
-          },
-          {
-            "type": "continue_statement",
-            "named": true
-          },
-          {
-            "type": "debugger_statement",
-            "named": true
-          },
-          {
-            "type": "declaration",
-            "named": true
-          },
-          {
-            "type": "do_statement",
-            "named": true
-          },
-          {
-            "type": "empty_statement",
-            "named": true
-          },
-          {
-            "type": "export_statement",
-            "named": true
-          },
-          {
-            "type": "expression_statement",
-            "named": true
-          },
-          {
-            "type": "for",
-            "named": true
-          },
-          {
-            "type": "if",
-            "named": true
-          },
-          {
-            "type": "import",
-            "named": true
-          },
-          {
-            "type": "labeled_statement",
-            "named": true
-          },
-          {
-            "type": "return",
-            "named": true
-          },
-          {
-            "type": "switch_statement",
-            "named": true
-          },
-          {
-            "type": "throw_statement",
-            "named": true
-          },
-          {
-            "type": "try",
-            "named": true
-          },
-          {
-            "type": "while",
-            "named": true
-          },
-          {
-            "type": "with_statement",
+            "type": "statement",
             "named": true
           }
         ]
@@ -7267,11 +6356,11 @@
   },
   {
     "type": "number",
-    "named": true
+    "named": false
   },
   {
     "type": "number",
-    "named": false
+    "named": true
   },
   {
     "type": "of",
