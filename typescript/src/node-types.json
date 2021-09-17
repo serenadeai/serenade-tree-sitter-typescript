@@ -378,7 +378,7 @@
         "required": false,
         "types": [
           {
-            "type": "type_parameter",
+            "type": "type_parameters",
             "named": true
           }
         ]
@@ -525,7 +525,7 @@
         "required": false,
         "types": [
           {
-            "type": "type_parameter",
+            "type": "type_parameters",
             "named": true
           }
         ]
@@ -1106,17 +1106,16 @@
   {
     "type": "brace_enclosed_body",
     "named": true,
-    "fields": {
-      "statement_list": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "statement",
-            "named": true
-          }
-        ]
-      }
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "statement",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1226,7 +1225,7 @@
         "required": false,
         "types": [
           {
-            "type": "type_parameter",
+            "type": "type_parameters",
             "named": true
           }
         ]
@@ -2215,22 +2214,22 @@
     "type": "function",
     "named": true,
     "fields": {
-      "function_name": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
       "modifier_list": {
         "multiple": false,
         "required": false,
         "types": [
           {
             "type": "async_modifier",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
             "named": true
           }
         ]
@@ -2268,7 +2267,7 @@
         "required": false,
         "types": [
           {
-            "type": "type_parameter",
+            "type": "type_parameters",
             "named": true
           }
         ]
@@ -2350,7 +2349,7 @@
         "required": false,
         "types": [
           {
-            "type": "type_parameter",
+            "type": "type_parameters",
             "named": true
           }
         ]
@@ -2441,7 +2440,7 @@
         "required": false,
         "types": [
           {
-            "type": "type_parameter",
+            "type": "type_parameters",
             "named": true
           }
         ]
@@ -2515,7 +2514,7 @@
         "required": false,
         "types": [
           {
-            "type": "type_parameter",
+            "type": "type_parameters",
             "named": true
           }
         ]
@@ -3533,7 +3532,7 @@
         "required": false,
         "types": [
           {
-            "type": "type_parameter",
+            "type": "type_parameters",
             "named": true
           }
         ]
@@ -3825,7 +3824,7 @@
         "required": false,
         "types": [
           {
-            "type": "type_parameter",
+            "type": "type_parameters",
             "named": true
           }
         ]
@@ -3923,7 +3922,7 @@
         "required": false,
         "types": [
           {
-            "type": "type_parameter",
+            "type": "type_parameters",
             "named": true
           }
         ]
@@ -4036,7 +4035,7 @@
         "required": false,
         "types": [
           {
-            "type": "type_parameter",
+            "type": "type_parameters",
             "named": true
           }
         ]
