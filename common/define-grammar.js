@@ -65,9 +65,9 @@ module.exports = function defineGrammar(dialect) {
       [$._call_signature, $.constructor_type],
 
       [$._primary_type, $.type_parameter],
-      [$.jsx_opening_element, $.type_parameter],
-      [$.jsx_opening_element, $.type_parameter, $._primary_type],
-      [$.jsx_opening_element, $.generic_type],
+      [$.markup_opening_tag, $.type_parameter],
+      [$.markup_opening_tag, $.type_parameter, $._primary_type],
+      [$.markup_opening_tag, $.generic_type],
       [$.jsx_namespace_name, $._primary_type],
 
       [$.primary_expression, $.parameter_name],
@@ -111,10 +111,11 @@ module.exports = function defineGrammar(dialect) {
       [$.readonly_type, $.readonly_modifier],
       // [$.primary_expression, $.async_modifier, $.property_name],
 
+
       // [$.jsx_start_opening_element, $.type_parameter],
-      // [$.jsx_start_opening_element],
-      [$.jsx_opening_element],
-      [$.jsx_self_closing_element],
+      [$.jsx_start_opening_element],
+      [$.markup_opening_tag],
+      // [$.jsx_self_closing_element],
       // [$._jsx_identifier, $.jsx_start_opening_element],
       // [$._jsx_identifier, $.type_parameter],
       // [$._jsx_identifier, $.jsx_start_opening_element, $.type_parameter],
@@ -154,10 +155,18 @@ module.exports = function defineGrammar(dialect) {
             seq(optional($.readonly_modifier), optional($.abstract_modifier)),
           ),
         )),
-        field('assignment_variable', $.property_name),
+        field('assignment_list', alias($.public_field_assignment, $.assignment))
+      ),  
+
+      public_field_assignment: $ => seq(
+        alias($.public_field_assignment_variable, $.assignment_variable),
+        optional_with_placeholder('assignment_value_list_optional', $.assignment_initializer)
+      ),
+
+      public_field_assignment_variable: $ => seq(
+        $.property_name,
         optional(choice('?', '!')),
-        field('type_optional', optional($.type_annotation)),
-        optional($.assignment_initializer)
+        field('type_optional', optional($.type_annotation))
       ),
 
       // override original catch, add optional type annotation
@@ -239,17 +248,17 @@ module.exports = function defineGrammar(dialect) {
             )
           ),
         ),
-        optional_with_placeholder('jsx_attribute_list', repeat($._jsx_attribute))
+        optional_with_placeholder('markup_attribute_list', repeat($._jsx_attribute))
         // repeat(field('attribute', $._jsx_attribute))
       ),
 
       // This rule is only referenced by expression when the dialect is 'tsx'
-      jsx_opening_element: $ => prec.dynamic(-1, seq(
+      markup_opening_tag: $ => prec.dynamic(-1, seq(
         $.jsx_start_opening_element,
         '>'
       )),
 
-      // tsx only. See jsx_opening_element.
+      // tsx only. See markup_opening_tag.
       jsx_self_closing_element: $ => prec.dynamic(-1, seq(
         $.jsx_start_opening_element,
         '/',
@@ -287,12 +296,13 @@ module.exports = function defineGrammar(dialect) {
         seq(
           field('assignment_variable', choice($.identifier, $._destructuring_pattern)),
           optional_with_placeholder('type_optional', $.type_annotation),
-          optional($.assignment_initializer)
+          optional_with_placeholder('assignment_value_list_optional', $.assignment_initializer)
         ),
         prec('declaration', seq(
           field('assignment_variable', $.identifier),
           '!',
-          field('type_optional', $.type_annotation)
+          field('type_optional', $.type_annotation),
+          optional_with_placeholder('assignment_value_list_optional', '!!UNMATCHABLE_52444140579a')
         ))
       ),
 
@@ -789,7 +799,16 @@ module.exports = function defineGrammar(dialect) {
           optional($.static_modifier),
           optional($.readonly_modifier),
         )),
-        field('assignment_variable', $.property_name),
+        field('assignment_list', alias($.property_signature_assignment, $.assignment))
+      ),
+
+      property_signature_assignment: $ => seq(
+        alias($.property_signature_assignment_variable, $.assignment_variable),
+        optional_with_placeholder('assignment_value_list_optional', '!!UNMATCHABLE_34ed59dbebf4')
+      ),
+
+      property_signature_assignment_variable: $ => seq(
+        $.property_name,
         optional('?'),
         optional_with_placeholder('type_optional', optional($.type_annotation))
       ),
