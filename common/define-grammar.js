@@ -115,11 +115,17 @@ module.exports = function defineGrammar(dialect) {
       // [$.jsx_start_opening_element, $.type_parameter],
       [$.jsx_start_opening_element],
       [$.markup_opening_tag],
-      // [$.jsx_self_closing_element],
-      // [$._jsx_identifier, $.jsx_start_opening_element],
-      // [$._jsx_identifier, $.type_parameter],
-      // [$._jsx_identifier, $.jsx_start_opening_element, $.type_parameter],
 
+      [$.lambda_call_signature, $.function_type],
+      [$.lambda_call_signature, $.constructor_type],
+
+      // [$.async_modifier, $.property_name],
+      // [$.static_modifier, $.property_name],
+      // [$.accessors_modifier, $.property_name],
+      // [$.accessibility_modifier, $.property_name],
+      // [$.export_statement, $.property_name],
+      // [$.readonly_modifier, $.property_name],
+      // [$.readonly_modifier, $.property_name, $.index_signature],
     ]),
 
     inline: ($, previous) => previous
@@ -352,7 +358,7 @@ module.exports = function defineGrammar(dialect) {
         '{',
         optional_with_placeholder(
           'class_member_list', 
-          repeat($.class_member)
+          repeat(alias($.class_member, $.member))
         ),
         '}'
       ),
@@ -521,7 +527,7 @@ module.exports = function defineGrammar(dialect) {
         optional(choice(',', ';')),
         sepBy1(
           choice(',', $._semicolon),
-          $.interface_member,
+          alias($.interface_member, $.member),
         ),
         optional(choice(',', $._semicolon))
       ),
@@ -566,10 +572,10 @@ module.exports = function defineGrammar(dialect) {
       ),
       
       enum_member_list_inner: $ => seq(
-        sepBy1(',', choice(
+        sepBy1(',', field('member', choice(
           $.property_name,
           $.enum_constant
-        )),
+        ))),
         optional(',')
       ),
 
@@ -816,6 +822,14 @@ module.exports = function defineGrammar(dialect) {
       _call_signature: $ => seq(
         optional_with_placeholder('type_parameter_list', $.type_parameters),
         field('parameters', $.formal_parameters),
+        optional_with_placeholder('return_type_optional',
+          choice($.type_annotation, $.asserts, $.type_predicate_annotation)
+        )
+      ),
+
+      lambda_call_signature: $ => seq(
+        optional_with_placeholder('type_parameter_list', $.type_parameters),
+        field('parameter_list_optional', $.formal_parameters),
         optional_with_placeholder('return_type_optional',
           choice($.type_annotation, $.asserts, $.type_predicate_annotation)
         )

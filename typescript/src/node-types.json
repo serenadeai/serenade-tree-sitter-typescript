@@ -158,6 +158,10 @@
     "named": true,
     "subtypes": [
       {
+        "type": "array",
+        "named": true
+      },
+      {
         "type": "call",
         "named": true
       },
@@ -187,10 +191,6 @@
       },
       {
         "type": "lambda",
-        "named": true
-      },
-      {
-        "type": "list",
         "named": true
       },
       {
@@ -534,6 +534,26 @@
     }
   },
   {
+    "type": "array",
+    "named": true,
+    "fields": {
+      "list": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": ",",
+            "named": false
+          },
+          {
+            "type": "list_element",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "array_pattern",
     "named": true,
     "fields": {},
@@ -848,6 +868,22 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "await_modifier",
+    "named": true,
+    "fields": {
+      "modifier": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "await",
+            "named": false
+          }
+        ]
+      }
     }
   },
   {
@@ -1323,59 +1359,11 @@
         "required": false,
         "types": [
           {
-            "type": "class_member",
+            "type": "member",
             "named": true
           }
         ]
       }
-    }
-  },
-  {
-    "type": "class_member",
-    "named": true,
-    "fields": {
-      "method": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "abstract_method_signature",
-            "named": true
-          },
-          {
-            "type": "method_definition",
-            "named": true
-          },
-          {
-            "type": "method_signature",
-            "named": true
-          }
-        ]
-      },
-      "property": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "public_field_definition",
-            "named": true
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "decorator",
-          "named": true
-        },
-        {
-          "type": "index_signature",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -1626,7 +1614,7 @@
     "type": "decorator",
     "named": true,
     "fields": {
-      "decorator_value": {
+      "decorator_expression": {
         "multiple": false,
         "required": true,
         "types": [
@@ -1851,20 +1839,21 @@
   {
     "type": "enum_member_list_inner",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "enum_constant",
-          "named": true
-        },
-        {
-          "type": "property_name",
-          "named": true
-        }
-      ]
+    "fields": {
+      "member": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "enum_constant",
+            "named": true
+          },
+          {
+            "type": "property_name",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -2156,6 +2145,16 @@
         "types": [
           {
             "type": "statement",
+            "named": true
+          }
+        ]
+      },
+      "modifier_list": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "await_modifier",
             "named": true
           }
         ]
@@ -2884,54 +2883,6 @@
     }
   },
   {
-    "type": "interface_member",
-    "named": true,
-    "fields": {
-      "method": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "call_signature",
-            "named": true
-          },
-          {
-            "type": "method_signature",
-            "named": true
-          }
-        ]
-      },
-      "property": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "property_signature",
-            "named": true
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "construct_signature",
-          "named": true
-        },
-        {
-          "type": "export_statement",
-          "named": true
-        },
-        {
-          "type": "index_signature",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "interface_member_list",
     "named": true,
     "fields": {},
@@ -2940,7 +2891,7 @@
       "required": true,
       "types": [
         {
-          "type": "interface_member",
+          "type": "member",
           "named": true
         }
       ]
@@ -2977,12 +2928,12 @@
     }
   },
   {
-    "type": "jsx_fragment",
+    "type": "jsx_child",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": false,
+      "multiple": false,
+      "required": true,
       "types": [
         {
           "type": "enclosed_body",
@@ -3002,6 +2953,21 @@
         },
         {
           "type": "markup_singleton_tag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "jsx_fragment",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "jsx_child",
           "named": true
         }
       ]
@@ -3247,9 +3213,39 @@
           }
         ]
       },
-      "parameters": {
+      "return_value": {
         "multiple": false,
         "required": false,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "enclosed_body",
+          "named": true
+        },
+        {
+          "type": "lambda_call_signature",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "lambda_call_signature",
+    "named": true,
+    "fields": {
+      "parameter_list_optional": {
+        "multiple": false,
+        "required": true,
         "types": [
           {
             "type": "formal_parameters",
@@ -3275,16 +3271,6 @@
           }
         ]
       },
-      "return_value": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "expression",
-            "named": true
-          }
-        ]
-      },
       "type_parameter_list": {
         "multiple": false,
         "required": false,
@@ -3295,16 +3281,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "enclosed_body",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -3325,21 +3301,6 @@
           }
         ]
       }
-    }
-  },
-  {
-    "type": "list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "list_element",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -3541,23 +3502,7 @@
         "required": false,
         "types": [
           {
-            "type": "enclosed_body",
-            "named": true
-          },
-          {
-            "type": "jsx_fragment",
-            "named": true
-          },
-          {
-            "type": "jsx_text",
-            "named": true
-          },
-          {
-            "type": "markup_element",
-            "named": true
-          },
-          {
-            "type": "markup_singleton_tag",
+            "type": "jsx_child",
             "named": true
           }
         ]
@@ -3660,6 +3605,70 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "member",
+    "named": true,
+    "fields": {
+      "method": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "abstract_method_signature",
+            "named": true
+          },
+          {
+            "type": "call_signature",
+            "named": true
+          },
+          {
+            "type": "method_definition",
+            "named": true
+          },
+          {
+            "type": "method_signature",
+            "named": true
+          }
+        ]
+      },
+      "property": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "property_signature",
+            "named": true
+          },
+          {
+            "type": "public_field_definition",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "construct_signature",
+          "named": true
+        },
+        {
+          "type": "decorator",
+          "named": true
+        },
+        {
+          "type": "export_statement",
+          "named": true
+        },
+        {
+          "type": "index_signature",
+          "named": true
+        }
+      ]
     }
   },
   {
