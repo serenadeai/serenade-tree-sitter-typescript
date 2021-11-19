@@ -3492,6 +3492,37 @@
     }
   },
   {
+    "type": "markup_content",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "enclosed_body",
+          "named": true
+        },
+        {
+          "type": "jsx_fragment",
+          "named": true
+        },
+        {
+          "type": "jsx_text",
+          "named": true
+        },
+        {
+          "type": "markup_element",
+          "named": true
+        },
+        {
+          "type": "markup_singleton_tag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "markup_element",
     "named": true,
     "fields": {
@@ -3505,12 +3536,12 @@
           }
         ]
       },
-      "markup_element_content": {
+      "markup_content_list": {
         "multiple": true,
         "required": false,
         "types": [
           {
-            "type": "jsx_child",
+            "type": "markup_content",
             "named": true
           }
         ]
