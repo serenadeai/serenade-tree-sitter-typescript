@@ -491,8 +491,13 @@
               "value": "class"
             },
             {
-              "type": "SYMBOL",
-              "name": "lexical_declaration"
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "lexical_declaration"
+              },
+              "named": true,
+              "value": "variable_declaration"
             },
             {
               "type": "SYMBOL",
@@ -1341,8 +1346,13 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "lexical_declaration"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "lexical_declaration"
+          },
+          "named": true,
+          "value": "variable_declaration"
         },
         {
           "type": "SYMBOL",
