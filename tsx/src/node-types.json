@@ -60,7 +60,7 @@
         "named": true
       },
       {
-        "type": "type_identifier",
+        "type": "type_identifier_",
         "named": true
       },
       {
@@ -302,7 +302,7 @@
         "required": true,
         "types": [
           {
-            "type": "type_identifier",
+            "type": "type_identifier_",
             "named": true
           }
         ]
@@ -1327,7 +1327,7 @@
         "required": false,
         "types": [
           {
-            "type": "type_identifier",
+            "type": "type_identifier_",
             "named": true
           }
         ]
@@ -2010,7 +2010,7 @@
             "named": true
           },
           {
-            "type": "type_identifier",
+            "type": "type_identifier_",
             "named": true
           }
         ]
@@ -2531,7 +2531,7 @@
           "named": true
         },
         {
-          "type": "type_identifier",
+          "type": "type_identifier_",
           "named": true
         }
       ]
@@ -2830,7 +2830,7 @@
       "required": true,
       "types": [
         {
-          "type": "type_identifier",
+          "type": "type_identifier_",
           "named": true
         }
       ]
@@ -2855,7 +2855,7 @@
         "required": true,
         "types": [
           {
-            "type": "type_identifier",
+            "type": "type_identifier_",
             "named": true
           }
         ]
@@ -2974,11 +2974,11 @@
     }
   },
   {
-    "type": "jsx_namespace_name",
+    "type": "jsx_identifier_",
     "named": true,
     "fields": {
       "identifier": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
@@ -2991,6 +2991,21 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "jsx_namespace_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "jsx_identifier_",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3365,7 +3380,7 @@
           "named": true
         },
         {
-          "type": "type_identifier",
+          "type": "type_identifier_",
           "named": true
         }
       ]
@@ -3375,30 +3390,12 @@
     "type": "markup_attribute",
     "named": true,
     "fields": {
-      "identifier": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "jsx_identifier",
-            "named": true
-          }
-        ]
-      },
       "markup_attribute_name": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "jsx_identifier",
+            "type": "jsx_identifier_",
             "named": true
           },
           {
@@ -3440,15 +3437,11 @@
     "named": true,
     "fields": {
       "identifier": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "jsx_identifier",
+            "type": "jsx_identifier_",
             "named": true
           },
           {
@@ -3543,7 +3536,7 @@
             "named": true
           },
           {
-            "type": "jsx_identifier",
+            "type": "jsx_identifier_",
             "named": true
           },
           {
@@ -3581,15 +3574,11 @@
     "named": true,
     "fields": {
       "identifier": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "jsx_identifier",
+            "type": "jsx_identifier_",
             "named": true
           },
           {
@@ -4038,7 +4027,7 @@
         "required": true,
         "types": [
           {
-            "type": "type_identifier",
+            "type": "type_identifier_",
             "named": true
           }
         ]
@@ -5479,7 +5468,7 @@
         "required": true,
         "types": [
           {
-            "type": "type_identifier",
+            "type": "type_identifier_",
             "named": true
           }
         ]
@@ -5537,6 +5526,21 @@
     }
   },
   {
+    "type": "type_identifier_",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "type_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "type_parameter",
     "named": true,
     "fields": {},
@@ -5553,7 +5557,7 @@
           "named": true
         },
         {
-          "type": "type_identifier",
+          "type": "type_identifier_",
           "named": true
         }
       ]

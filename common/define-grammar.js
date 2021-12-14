@@ -115,9 +115,31 @@ module.exports = function defineGrammar(dialect) {
       // [$.jsx_start_opening_element, $.type_parameter],
       [$.jsx_start_opening_element],
       [$.markup_opening_tag],
+      [$.markup_opening_tag, $.jsx_identifier_],
 
       [$.lambda_call_signature, $.function_type],
       [$.lambda_call_signature, $.constructor_type],
+
+      [$.primary_expression, $.type_identifier_],
+      [$.pattern, $.type_identifier_],
+      [$.optional_tuple_parameter, $.type_identifier_],
+      [$.nested_identifier, $.nested_type_identifier, $.type_identifier_],
+      [$.primary_expression, $.pattern, $.type_identifier_],
+      [$.primary_expression, $.optional_tuple_parameter, $.type_identifier_],
+      [$.rest_pattern, $.type_identifier_],
+      [$.nested_identifier, $.type_identifier_],
+      [$.primary_expression, $.nested_identifier, $.type_identifier_],
+      [$.primary_expression, $.rest_pattern, $.type_identifier_],
+      [$.jsx_identifier_, $.type_identifier_],
+      [$.markup_opening_tag, $.jsx_identifier_, $.type_identifier_],
+
+      // `primary_expression`, `optional_tuple_parameter`, `type_identifier_`
+      // `primary_expression`, `pattern`, `type_identifier_`
+
+      // `nested_identifier`, ``, `type_identifier_`
+
+
+      // `primary_expression`, `type_identifier_`
 
       // [$.async_modifier, $.property_name],
       // [$.static_modifier, $.property_name],
@@ -134,7 +156,7 @@ module.exports = function defineGrammar(dialect) {
         '_call_signature'
       ].includes(rule.name))
       .concat([
-        $._type_identifier,
+        // $.type_identifier_,
         $._enum_member,
         $.jsx_start_opening_element,
       ]),
@@ -242,7 +264,7 @@ module.exports = function defineGrammar(dialect) {
         field('identifier', 
           choice(
             choice(
-              $._jsx_identifier,
+              $.jsx_identifier_,
               $.jsx_namespace_name
             ),
             seq(
@@ -451,7 +473,7 @@ module.exports = function defineGrammar(dialect) {
       class: $ => prec('literal', seq(
         optional_with_placeholder('decorator_list', repeat($.decorator)),
         'class',
-        optional(field('identifier', $._type_identifier)),
+        optional(field('identifier', $.type_identifier_)),
         optional_with_placeholder('type_parameter_list', $.type_parameters),
         optional_with_placeholder('extends_optional', $.extends_clause),
         optional_with_placeholder('implements_list_optional', $.implements_clause),
@@ -462,7 +484,7 @@ module.exports = function defineGrammar(dialect) {
         optional_with_placeholder('decorator_list', repeat($.decorator)),
         field('modifier_list', $.abstract_modifier),
         'class',
-        field('identifier', $._type_identifier),
+        field('identifier', $.type_identifier_),
         optional_with_placeholder('type_parameter_list', $.type_parameters),
         optional_with_placeholder('extends_optional', $.extends_clause),
         optional_with_placeholder('implements_list_optional', $.implements_clause),
@@ -472,7 +494,7 @@ module.exports = function defineGrammar(dialect) {
       class_declaration: $ => prec.left('declaration', seq(
         optional_with_placeholder('decorator_list', repeat($.decorator)),
         'class',
-        field('identifier', $._type_identifier),
+        field('identifier', $.type_identifier_),
         optional_with_placeholder('type_parameter_list', $.type_parameters),
         optional_with_placeholder('extends_optional', $.extends_clause),
         optional_with_placeholder('implements_list_optional', $.implements_clause),
@@ -506,12 +528,12 @@ module.exports = function defineGrammar(dialect) {
       nested_type_identifier: $ => prec('member', seq(
         field('module', choice($.identifier, $.nested_identifier)),
         '.',
-        field('name', $._type_identifier)
+        field('name', $.type_identifier_)
       )),
 
       interface: $ => seq(
         'interface',
-        field('identifier', $._type_identifier),
+        field('identifier', $.type_identifier_),
         optional_with_placeholder('type_parameter_list', $.type_parameters),
         optional_with_placeholder('extends_optional', $.extends_clause),
         alias($.interface_brace_enclosed_body, $.enclosed_body),
@@ -547,7 +569,7 @@ module.exports = function defineGrammar(dialect) {
         'extends',
         field('extends_type', commaSep1(choice(
           prec('extends_type', choice(
-            $._type_identifier,
+            $.type_identifier_,
             $.nested_type_identifier,
             $.generic_type
           )),
@@ -586,7 +608,7 @@ module.exports = function defineGrammar(dialect) {
 
       type_alias: $ => seq(
         'type',
-        field('name', $._type_identifier),
+        field('name', $.type_identifier_),
         optional_with_placeholder('type_parameter_list', $.type_parameters),
         '=',
         field('value', $.type),
@@ -674,7 +696,7 @@ module.exports = function defineGrammar(dialect) {
       _primary_type: $ => choice(
         $.parenthesized_type,
         $.predefined_type,
-        $._type_identifier,
+        $.type_identifier_,
         $.nested_type_identifier,
         $.generic_type,
         $.object_type,
@@ -690,7 +712,7 @@ module.exports = function defineGrammar(dialect) {
         $.conditional_type,
       ),
 
-      infer_type: $ => seq("infer", $._type_identifier),
+      infer_type: $ => seq("infer", $.type_identifier_),
 
       conditional_type: $ => prec.left(seq(
         field('left', $.type),
@@ -704,7 +726,7 @@ module.exports = function defineGrammar(dialect) {
 
       generic_type: $ => prec('call', seq(
         choice(
-          $._type_identifier,
+          $.type_identifier_,
           $.nested_type_identifier
         ),
         $.type_arguments
@@ -738,7 +760,7 @@ module.exports = function defineGrammar(dialect) {
       ),
 
       mapped_type_clause: $ => seq(
-        $._type_identifier,
+        $.type_identifier_,
         'in',
         $.type,
       ),
@@ -840,7 +862,7 @@ module.exports = function defineGrammar(dialect) {
       ),
 
       type_parameter: $ => seq(
-        $._type_identifier,
+        $.type_identifier_,
         optional($.constraint),
         optional($.default_type)
       ),
@@ -905,7 +927,7 @@ module.exports = function defineGrammar(dialect) {
         choice($.type, $.type_predicate),
       )),
 
-      _type_identifier: $ => alias($.identifier, $.type_identifier),
+      type_identifier_: $ => alias($.identifier, $.type_identifier),
 
       _reserved_identifier: ($, previous) => choice(
         'declare',

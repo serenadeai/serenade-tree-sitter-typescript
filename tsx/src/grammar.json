@@ -3052,7 +3052,7 @@
       "type": "PATTERN",
       "value": "[a-zA-Z_$][a-zA-Z\\d_$]*-[a-zA-Z\\d_$\\-]*"
     },
-    "_jsx_identifier": {
+    "jsx_identifier_": {
       "type": "FIELD",
       "name": "identifier",
       "content": {
@@ -3108,7 +3108,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_jsx_identifier"
+          "name": "jsx_identifier_"
         },
         {
           "type": "STRING",
@@ -3116,7 +3116,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_jsx_identifier"
+          "name": "jsx_identifier_"
         }
       ]
     },
@@ -3125,7 +3125,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_jsx_identifier"
+          "name": "jsx_identifier_"
         },
         {
           "type": "SYMBOL",
@@ -3236,7 +3236,7 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "_jsx_identifier"
+            "name": "jsx_identifier_"
           },
           {
             "type": "SYMBOL",
@@ -3346,7 +3346,7 @@
                 "name": "identifier",
                 "content": {
                   "type": "SYMBOL",
-                  "name": "_type_identifier"
+                  "name": "type_identifier_"
                 }
               },
               {
@@ -3463,7 +3463,7 @@
             "name": "identifier",
             "content": {
               "type": "SYMBOL",
-              "name": "_type_identifier"
+              "name": "type_identifier_"
             }
           },
           {
@@ -7793,7 +7793,7 @@
                 "members": [
                   {
                     "type": "SYMBOL",
-                    "name": "_jsx_identifier"
+                    "name": "jsx_identifier_"
                   },
                   {
                     "type": "SYMBOL",
@@ -8356,7 +8356,7 @@
             "name": "identifier",
             "content": {
               "type": "SYMBOL",
-              "name": "_type_identifier"
+              "name": "type_identifier_"
             }
           },
           {
@@ -8564,7 +8564,7 @@
             "name": "name",
             "content": {
               "type": "SYMBOL",
-              "name": "_type_identifier"
+              "name": "type_identifier_"
             }
           }
         ]
@@ -8582,7 +8582,7 @@
           "name": "identifier",
           "content": {
             "type": "SYMBOL",
-            "name": "_type_identifier"
+            "name": "type_identifier_"
           }
         },
         {
@@ -8847,7 +8847,7 @@
                         "members": [
                           {
                             "type": "SYMBOL",
-                            "name": "_type_identifier"
+                            "name": "type_identifier_"
                           },
                           {
                             "type": "SYMBOL",
@@ -8886,7 +8886,7 @@
                               "members": [
                                 {
                                   "type": "SYMBOL",
-                                  "name": "_type_identifier"
+                                  "name": "type_identifier_"
                                 },
                                 {
                                   "type": "SYMBOL",
@@ -9085,7 +9085,7 @@
           "name": "name",
           "content": {
             "type": "SYMBOL",
-            "name": "_type_identifier"
+            "name": "type_identifier_"
           }
         },
         {
@@ -9580,7 +9580,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_type_identifier"
+          "name": "type_identifier_"
         },
         {
           "type": "SYMBOL",
@@ -9645,7 +9645,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_type_identifier"
+          "name": "type_identifier_"
         }
       ]
     },
@@ -9713,7 +9713,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "_type_identifier"
+                "name": "type_identifier_"
               },
               {
                 "type": "SYMBOL",
@@ -9841,7 +9841,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_type_identifier"
+          "name": "type_identifier_"
         },
         {
           "type": "STRING",
@@ -10421,7 +10421,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_type_identifier"
+          "name": "type_identifier_"
         },
         {
           "type": "CHOICE",
@@ -10812,7 +10812,7 @@
         ]
       }
     },
-    "_type_identifier": {
+    "type_identifier_": {
       "type": "ALIAS",
       "content": {
         "type": "SYMBOL",
@@ -11134,12 +11134,70 @@
       "markup_opening_tag"
     ],
     [
+      "markup_opening_tag",
+      "jsx_identifier_"
+    ],
+    [
       "lambda_call_signature",
       "function_type"
     ],
     [
       "lambda_call_signature",
       "constructor_type"
+    ],
+    [
+      "primary_expression",
+      "type_identifier_"
+    ],
+    [
+      "pattern",
+      "type_identifier_"
+    ],
+    [
+      "optional_tuple_parameter",
+      "type_identifier_"
+    ],
+    [
+      "nested_identifier",
+      "nested_type_identifier",
+      "type_identifier_"
+    ],
+    [
+      "primary_expression",
+      "pattern",
+      "type_identifier_"
+    ],
+    [
+      "primary_expression",
+      "optional_tuple_parameter",
+      "type_identifier_"
+    ],
+    [
+      "rest_pattern",
+      "type_identifier_"
+    ],
+    [
+      "nested_identifier",
+      "type_identifier_"
+    ],
+    [
+      "primary_expression",
+      "nested_identifier",
+      "type_identifier_"
+    ],
+    [
+      "primary_expression",
+      "rest_pattern",
+      "type_identifier_"
+    ],
+    [
+      "jsx_identifier_",
+      "type_identifier_"
+    ],
+    [
+      "markup_opening_tag",
+      "jsx_identifier_",
+      "type_identifier_"
     ]
   ],
   "precedences": [
@@ -11534,9 +11592,7 @@
     "_jsx_element",
     "_jsx_attribute_name",
     "_jsx_attribute_value",
-    "_jsx_identifier",
     "_lhs_expression",
-    "_type_identifier",
     "ReferenceError",
     "jsx_start_opening_element"
   ],

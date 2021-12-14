@@ -87,5 +87,12 @@
       "injections": "node_modules/tree-sitter-javascript/queries/injections.scm",
       "content-regex": "@flow"
     }
-  ]
+  ],
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": false,
+    "arrowParens": "avoid",
+    "singleQuote": true
+  }
 }
