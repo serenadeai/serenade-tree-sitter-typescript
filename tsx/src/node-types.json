@@ -5381,18 +5381,62 @@
     }
   },
   {
-    "type": "type_arguments",
-    "named": true,
+    "type": "type_argument",
+    "named": false,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "type",
+          "type": "_primary_type",
+          "named": true
+        },
+        {
+          "type": "constructor_type",
+          "named": true
+        },
+        {
+          "type": "function_type",
+          "named": true
+        },
+        {
+          "type": "infer_type",
+          "named": true
+        },
+        {
+          "type": "intersection_type",
+          "named": true
+        },
+        {
+          "type": "readonly_type",
+          "named": true
+        },
+        {
+          "type": "union_type",
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "type_arguments",
+    "named": true,
+    "fields": {
+      "type_argument_list": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": ",",
+            "named": false
+          },
+          {
+            "type": "type_argument",
+            "named": false
+          }
+        ]
+      }
     }
   },
   {

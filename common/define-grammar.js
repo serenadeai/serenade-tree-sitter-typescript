@@ -858,7 +858,16 @@ module.exports = function defineGrammar(dialect) {
       predefined_type: $ =>
         choice('any', 'number', 'boolean', 'string', 'symbol', 'void'),
 
-      type_arguments: $ => seq('<', commaSep1($.type), optional(','), '>'),
+      type_arguments: $ =>
+        seq(
+          '<',
+          field(
+            'type_argument_list',
+            commaSep1(alias($.type, 'type_argument'))
+          ),
+          optional(','),
+          '>'
+        ),
 
       object_type: $ =>
         seq(
