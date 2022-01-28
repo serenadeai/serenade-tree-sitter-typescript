@@ -1951,7 +1951,7 @@
           "members": [
             {
               "type": "FIELD",
-              "name": "case_statement_list",
+              "name": "statement_list",
               "content": {
                 "type": "REPEAT",
                 "content": {
@@ -1962,7 +1962,7 @@
             },
             {
               "type": "FIELD",
-              "name": "case_statement_list",
+              "name": "statement_list",
               "content": {
                 "type": "BLANK"
               }
@@ -1987,7 +1987,7 @@
           "members": [
             {
               "type": "FIELD",
-              "name": "case_statement_list",
+              "name": "statement_list",
               "content": {
                 "type": "REPEAT",
                 "content": {
@@ -1998,7 +1998,7 @@
             },
             {
               "type": "FIELD",
-              "name": "case_statement_list",
+              "name": "statement_list",
               "content": {
                 "type": "BLANK"
               }

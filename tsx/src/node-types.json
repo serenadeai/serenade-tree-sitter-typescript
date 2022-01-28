@@ -1080,16 +1080,6 @@
     "type": "case",
     "named": true,
     "fields": {
-      "case_statement_list": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "statement",
-            "named": true
-          }
-        ]
-      },
       "condition": {
         "multiple": false,
         "required": true,
@@ -1100,6 +1090,16 @@
           },
           {
             "type": "sequence_expression",
+            "named": true
+          }
+        ]
+      },
+      "statement_list": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "statement",
             "named": true
           }
         ]
@@ -1560,7 +1560,7 @@
     "type": "default_case",
     "named": true,
     "fields": {
-      "case_statement_list": {
+      "statement_list": {
         "multiple": true,
         "required": false,
         "types": [
