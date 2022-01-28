@@ -524,7 +524,10 @@ module.exports = function defineGrammar(dialect) {
             optional_with_placeholder('decorator_list', repeat($.decorator)),
             'class',
             optional(field('identifier', $.type_identifier_)),
-            optional_with_placeholder('type_parameter_list', $.type_parameters),
+            optional_with_placeholder(
+              'type_parameter_list_optional',
+              $.type_parameters
+            ),
             optional_with_placeholder('extends_optional', $.extends_clause),
             optional_with_placeholder(
               'implements_list_optional',
@@ -542,7 +545,10 @@ module.exports = function defineGrammar(dialect) {
             field('modifier_list', $.abstract_modifier),
             'class',
             field('identifier', $.type_identifier_),
-            optional_with_placeholder('type_parameter_list', $.type_parameters),
+            optional_with_placeholder(
+              'type_parameter_list_optional',
+              $.type_parameters
+            ),
             optional_with_placeholder('extends_optional', $.extends_clause),
             optional_with_placeholder(
               'implements_list_optional',
@@ -559,7 +565,10 @@ module.exports = function defineGrammar(dialect) {
             optional_with_placeholder('decorator_list', repeat($.decorator)),
             'class',
             field('identifier', $.type_identifier_),
-            optional_with_placeholder('type_parameter_list', $.type_parameters),
+            optional_with_placeholder(
+              'type_parameter_list_optional',
+              $.type_parameters
+            ),
             optional_with_placeholder('extends_optional', $.extends_clause),
             optional_with_placeholder(
               'implements_list_optional',
@@ -608,7 +617,10 @@ module.exports = function defineGrammar(dialect) {
         seq(
           'interface',
           field('identifier', $.type_identifier_),
-          optional_with_placeholder('type_parameter_list', $.type_parameters),
+          optional_with_placeholder(
+            'type_parameter_list_optional',
+            $.type_parameters
+          ),
           optional_with_placeholder('extends_optional', $.extends_clause),
           alias($.interface_brace_enclosed_body, $.enclosed_body)
         ),
@@ -690,7 +702,10 @@ module.exports = function defineGrammar(dialect) {
         seq(
           'type',
           field('name', $.type_identifier_),
-          optional_with_placeholder('type_parameter_list', $.type_parameters),
+          optional_with_placeholder(
+            'type_parameter_list_optional',
+            $.type_parameters
+          ),
           '=',
           field('value', $.type),
           $._semicolon
@@ -769,7 +784,10 @@ module.exports = function defineGrammar(dialect) {
         prec.left(
           seq(
             'new',
-            optional($.type_parameters),
+            optional_with_placeholder(
+              'type_parameter_list_optional',
+              $.type_parameters
+            ),
             $.formal_parameters,
             '=>',
             $.type
@@ -934,7 +952,10 @@ module.exports = function defineGrammar(dialect) {
 
       _call_signature: $ =>
         seq(
-          optional_with_placeholder('type_parameter_list', $.type_parameters),
+          optional_with_placeholder(
+            'type_parameter_list_optional',
+            $.type_parameters
+          ),
           field('parameters', $.formal_parameters),
           optional_with_placeholder(
             'return_type_optional',
@@ -944,7 +965,10 @@ module.exports = function defineGrammar(dialect) {
 
       lambda_call_signature: $ =>
         seq(
-          optional_with_placeholder('type_parameter_list', $.type_parameters),
+          optional_with_placeholder(
+            'type_parameter_list_optional',
+            $.type_parameters
+          ),
           field('parameter_list_optional', $.formal_parameters),
           optional_with_placeholder(
             'return_type_optional',
@@ -953,7 +977,12 @@ module.exports = function defineGrammar(dialect) {
         ),
 
       type_parameters: $ =>
-        seq('<', commaSep1($.type_parameter), optional(','), '>'),
+        seq(
+          '<',
+          field('type_parameter_list', commaSep1($.type_parameter)),
+          optional(','),
+          '>'
+        ),
 
       type_parameter: $ =>
         seq(
@@ -969,7 +998,10 @@ module.exports = function defineGrammar(dialect) {
       construct_signature: $ =>
         seq(
           'new',
-          optional($.type_parameters),
+          optional_with_placeholder(
+            'type_parameter_list_optional',
+            $.type_parameters
+          ),
           $.formal_parameters,
           optional($.type_annotation)
         ),
@@ -1001,7 +1033,10 @@ module.exports = function defineGrammar(dialect) {
       function_type: $ =>
         prec.left(
           seq(
-            optional($.type_parameters),
+            optional_with_placeholder(
+              'type_parameter_list_optional',
+              $.type_parameters
+            ),
             $.formal_parameters,
             '=>',
             choice($.type, $.type_predicate)
