@@ -97,10 +97,10 @@ module.exports = function defineGrammar(dialect) {
         [$.object, $.object_type],
         [$.object, $.property_name],
         [$.object, $.object_pattern, $.object_type],
-        [$.object, $.object_pattern, $.property_name],
+        [$.object, $.object_pattern_element, $.property_name],
         [$.object_pattern, $.object_type],
         [$.object_pattern, $.object_type],
-        [$.object_pattern, $.property_name],
+        [$.object_pattern_element, $.property_name],
 
         [$.array, $.tuple_type],
         [$.array, $.array_pattern, $.tuple_type],
@@ -864,7 +864,7 @@ module.exports = function defineGrammar(dialect) {
       _number: $ =>
         prec.left(
           1,
-          seq(field('operator', choice('-', '+')), field('argument', $.number))
+          seq(field('operator', choice('-', '+')), field('argument_', $.number))
         ),
 
       existential_type: $ => '*',
