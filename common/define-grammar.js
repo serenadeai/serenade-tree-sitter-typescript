@@ -153,6 +153,8 @@ module.exports = function defineGrammar(dialect) {
           $.nested_type_identifier,
         ],
         [$.identifier_or_reserved, $.lambda],
+
+        [$.export_modifier, $.export_statement],
       ]),
 
     inline: ($, previous) =>
