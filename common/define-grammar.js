@@ -153,6 +153,8 @@ module.exports = function defineGrammar(dialect) {
           $.nested_type_identifier,
         ],
         [$.identifier_or_reserved, $.lambda],
+
+        [$.export_modifier, $.export_statement],
       ]),
 
     inline: ($, previous) =>
@@ -167,6 +169,7 @@ module.exports = function defineGrammar(dialect) {
       accessibility_modifier: $ =>
         field('modifier', choice('public', 'private', 'protected')),
       const_modifier: $ => field('modifier', 'const'),
+      declare_modifier: $ => field('modifier', 'declare'),
       readonly_modifier: $ => field('modifier', 'readonly'),
 
       public_field_definition: $ =>
@@ -428,7 +431,6 @@ module.exports = function defineGrammar(dialect) {
       class_member: $ =>
         choice(
           $.decorator,
-          // seq(field('method', ), optional($._semicolon)),
           seq(
             choice(
               $.index_signature,
@@ -502,7 +504,7 @@ module.exports = function defineGrammar(dialect) {
 
       ambient_declaration: $ =>
         seq(
-          'declare',
+          field('modifier_list', $.declare_modifier),
           choice(
             $.declaration,
             seq('global', $.enclosed_body),

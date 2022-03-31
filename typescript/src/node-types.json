@@ -284,7 +284,18 @@
   {
     "type": "ambient_declaration",
     "named": true,
-    "fields": {},
+    "fields": {
+      "modifier_list": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "declare_modifier",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
@@ -1515,6 +1526,22 @@
     }
   },
   {
+    "type": "declare_modifier",
+    "named": true,
+    "fields": {
+      "modifier": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "declare",
+            "named": false
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "decorator",
     "named": true,
     "fields": {
@@ -1533,6 +1560,22 @@
           {
             "type": "member_expression",
             "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "default_modifier",
+    "named": true,
+    "fields": {
+      "modifier": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "default",
+            "named": false
           }
         ]
       }
@@ -1781,6 +1824,102 @@
     }
   },
   {
+    "type": "export_declaration",
+    "named": true,
+    "fields": {
+      "declaration": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "declaration",
+            "named": true
+          }
+        ]
+      },
+      "decorator_list": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "decorator",
+            "named": true
+          }
+        ]
+      },
+      "modifier_list": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "default_modifier",
+            "named": true
+          },
+          {
+            "type": "export_modifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "export_field_declaration",
+    "named": true,
+    "fields": {
+      "decorator_list": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "decorator",
+            "named": true
+          }
+        ]
+      },
+      "modifier_list": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "default_modifier",
+            "named": true
+          },
+          {
+            "type": "export_modifier",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "export_modifier",
+    "named": true,
+    "fields": {
+      "modifier": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "export",
+            "named": false
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "export_specifier",
     "named": true,
     "fields": {
@@ -1810,42 +1949,12 @@
     "type": "export_statement",
     "named": true,
     "fields": {
-      "declaration": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "declaration",
-            "named": true
-          }
-        ]
-      },
-      "decorator_list": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "decorator",
-            "named": true
-          }
-        ]
-      },
       "source": {
         "multiple": false,
         "required": false,
         "types": [
           {
             "type": "string",
-            "named": true
-          }
-        ]
-      },
-      "value": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "expression",
             "named": true
           }
         ]
@@ -1857,6 +1966,14 @@
       "types": [
         {
           "type": "export_clause",
+          "named": true
+        },
+        {
+          "type": "export_declaration",
+          "named": true
+        },
+        {
+          "type": "export_field_declaration",
           "named": true
         },
         {
