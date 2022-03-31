@@ -294,6 +294,10 @@
           "named": true
         },
         {
+          "type": "declare_modifier",
+          "named": true
+        },
+        {
           "type": "enclosed_body",
           "named": true
         },
@@ -1512,6 +1516,22 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "declare_modifier",
+    "named": true,
+    "fields": {
+      "modifier": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "declare",
+            "named": false
+          }
+        ]
+      }
     }
   },
   {
