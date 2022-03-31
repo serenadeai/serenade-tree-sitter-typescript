@@ -284,17 +284,24 @@
   {
     "type": "ambient_declaration",
     "named": true,
-    "fields": {},
+    "fields": {
+      "modifier_list": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "declare_modifier",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
       "types": [
         {
           "type": "declaration",
-          "named": true
-        },
-        {
-          "type": "declare_modifier",
           "named": true
         },
         {

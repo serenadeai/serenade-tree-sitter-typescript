@@ -8426,8 +8426,12 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "declare_modifier"
+          "type": "FIELD",
+          "name": "modifier_list",
+          "content": {
+            "type": "SYMBOL",
+            "name": "declare_modifier"
+          }
         },
         {
           "type": "CHOICE",

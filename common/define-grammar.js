@@ -504,7 +504,7 @@ module.exports = function defineGrammar(dialect) {
 
       ambient_declaration: $ =>
         seq(
-          $.declare_modifier,
+          field('modifier_list', $.declare_modifier),
           choice(
             $.declaration,
             seq('global', $.enclosed_body),
