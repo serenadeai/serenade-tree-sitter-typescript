@@ -94,9 +94,9 @@ module.exports = function defineGrammar(dialect) {
         [$.rest_pattern, $._primary_type, $.primary_expression],
         [$.rest_pattern, $._primary_type],
 
-        [$.object, $.object_type],
+        [$.key_value_pair_list_block, $.object_type],
         [$.object, $.property_name],
-        [$.object, $.object_pattern, $.object_type],
+        [$.key_value_pair_list_block, $.object_pattern, $.object_type],
         [$.object_pattern_list, $.object_pattern_element, $.property_name],
         [$.object_pattern, $.object_type],
         [$.object_pattern, $.object_type],
